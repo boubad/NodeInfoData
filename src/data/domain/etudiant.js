@@ -3,7 +3,6 @@ import {
     DescriptionItem
 }
 from './descriptionitem';
-/
 //
 export class Etudiant extends DescriptionItem {
     constructor(oMap) {

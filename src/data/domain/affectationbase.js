@@ -2,7 +2,7 @@
 //
 import {
     DescriptionItem
-} = require('./descriptionitem');
+} from './descriptionitem';
 //
 export class AffectationBaseItem extends DescriptionItem {
     //

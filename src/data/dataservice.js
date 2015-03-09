@@ -43,13 +43,13 @@ export class DataService extends DataManagerBase {
         //
     find_person_by_username(suser) {
             if ((suser == undefined) || (suser == null)) {
-                return new Promise((resolve, reject) {
+                return new Promise((resolve, reject) => {
                     reject(new Error('Invalide username'));
                 });
             }
             let ruser = suser.trim().toLowerCase();
             if (ruser.length < 1) {
-                return new Promise((resolve, reject) {
+                return new Promise((resolve, reject) => {
                     reject(new Error('Invalide username'));
                 });
             }
