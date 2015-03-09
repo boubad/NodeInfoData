@@ -1,42 +1,36 @@
 // person.js
-import {
-    DescriptionItem
-}
-from './descriptionitem';
+import { DescriptionItem } from './descriptionitem';
 //
-import {
-    Crypto
-}
-from '../utils/crypto';
+import { Crypto } from '../utils/crypto';
 //
 export class Person extends DescriptionItem {
     constructor(oMap) {
             super(oMap);
             this.type = 'person';
-            if ((oMap != undefined) && (oMap != null)) {
-                if (oMap['username'] != undefined) {
-                    this.username = oMap['username'];
+            if ((oMap !== undefined) && (oMap !== null)) {
+                if (oMap.username !== undefined) {
+                    this.username = oMap.username;
                 }
-                if (oMap['firstname'] != undefined) {
-                    this.firstname = oMap['firstname'];
+                if (oMap.firstname !== undefined) {
+                    this.firstname = oMap.firstname;
                 }
-                if (oMap['lastname'] != undefined) {
-                    this.lastname = oMap['lastname'];
+                if (oMap.lastname !== undefined) {
+                    this.lastname = oMap.lastname;
                 }
-                if (oMap['password'] != undefined) {
-                    this.password = oMap['password'];
+                if (oMap.password !== undefined) {
+                    this.password = oMap.password;
                 }
-                if (oMap['email'] != undefined) {
-                    this.email = oMap['email'];
+                if (oMap.email !== undefined) {
+                    this.email = oMap.email;
                 }
-                if (oMap['phone'] != undefined) {
-                    this.phone = oMap['phone'];
+                if (oMap.phone !== undefined) {
+                    this.phone = oMap.phone;
                 }
-                if (oMap['departementids'] != undefined) {
-                    this.departementids = oMap['departementids'];
+                if (oMap.departementids !== undefined) {
+                    this.departementids = oMap.departementids;
                 } //
-                if (oMap['roles'] != undefined) {
-                    this.roles = oMap['roles'];
+                if (oMap.roles !== undefined) {
+                    this.roles = oMap.roles;
                 } //
             } // oMap
         } // constructor
@@ -49,7 +43,7 @@ export class Person extends DescriptionItem {
         }
     }
     change_password(ct) {
-        if ((ct == undefined) || (ct == null)) {
+        if ((ct === undefined) || (ct === null)) {
             this.password = null;
         } else {
             let v = null;
@@ -62,7 +56,7 @@ export class Person extends DescriptionItem {
         }
     }
     check_password(ct) {
-            if ((ct == undefined) || (ct == null)) {
+            if ((ct === undefined) || (ct === null)) {
                 if (this.has_password) {
                     return false;
                 }
@@ -77,31 +71,33 @@ export class Person extends DescriptionItem {
                 return false;
             }
             let cc = new Crypto();
-            v = cc.md5(x);
+            let v = cc.md5(x);
             return (this.password == v);
         } // check_password
     get departementids() {
-            return ((this._deps != undefined) && (this._deps != null)) ? this._deps : null;
+            return ((this._deps !== undefined) && 
+            (this._deps !== null)) ? this._deps : null;
         } // getDepartementids
     set departementids(s) {
         this._deps = null;
-        if ((s != undefined) && (s != null) && (s.length > 0)) {
+        if ((s !== undefined) && (s !== null) && (s.length > 0)) {
             this._deps = new Set();
             let n = s.length;
             for (let i = 0; i < n; ++i) {
                 let x = s[i];
-                if ((x != null) && (x.trim().length > 0)) {
+                if ((x !== null) && (x.trim().length > 0)) {
                     this._deps.add(x.trim());
                 } // x
             } // i
         }
     }
     get has_departementids() {
-        return (this.departementids != null);
+        return (this.departementids !== null);
     }
     add_departementid(id) {
-            if ((id != undefined) && (id != null) && (id.trim().length > 0)) {
-                if ((this._deps == undefined) || (this._deps == null)) {
+            if ((id !== undefined) && 
+            (id !== null) && (id.trim().length > 0)) {
+                if ((this._deps === undefined) || (this._deps === null)) {
                     this._deps = new Set();
                 }
                 this._deps.add(id.trim());
@@ -109,27 +105,29 @@ export class Person extends DescriptionItem {
         } // add_departementid
         //
     get roles() {
-        return ((this._roles != undefined) && (this._roles != null)) ? this._roles : null;
+        return ((this._roles !== undefined) && 
+        (this._roles !== null)) ? this._roles : null;
     }
     set roles(s) {
         this._roles = null;
-        if ((s != undefined) && (s != null) && (s.length > 0)) {
+        if ((s !== undefined) && (s !== null) && (s.length > 0)) {
             this._roles = new Set();
             let n = s.length;
             for (let i = 0; i < n; ++i) {
                 let x = s[i];
-                if ((x != null) && (x.trim().length > 0)) {
+                if ((x !== null) && (x.trim().length > 0)) {
                     this._roles.add(x.trim().toLowerCase());
                 } // x
             } // i
         }
     }
     get has_roles() {
-        return (this.roles != null);
+        return (this.roles !== null);
     }
     add_role(id) {
-            if ((id != undefined) && (id != null) && (id.trim().length > 0)) {
-                if ((this._roles == undefined) || (this._roles == null)) {
+            if ((id !== undefined) && (id !== null) && 
+            (id.trim().length > 0)) {
+                if ((this._roles === undefined) || (this._roles === null)) {
                     this._roles = new Set();
                 }
                 this._roles.add(id.trim().toLowerCase());
@@ -140,46 +138,53 @@ export class Person extends DescriptionItem {
         return "persons";
     }
     get username() {
-        return (this._user != undefined) ? this._user : null;
+        return (this._user !== undefined) ? this._user : null;
     }
     set username(s) {
-        if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
             this._user = s.trim().toLowerCase();
+        } else {
+            this._user = null;
         }
     }
     get has_username() {
-            rturn(this.username != null);
+            return(this.username !== null);
         }
         //
     get lastname() {
-        return (this._last != undefined) ? this._last : null;
+        return (this._last !== undefined) ? this._last : null;
     }
     set lastname(s) {
-        if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
             this._last = s.trim().toUpperCase();
+        } else {
+            this._last = null;
         }
     }
     get has_lastname() {
-            rturn(this.lastname != null);
+            return(this.lastname !== null);
         }
         //
     get firstname() {
-        return (this._first != undefined) ? this._first : null;
+        return (this._first !== undefined) ? this._first : null;
     }
-    set firsname(s) {
-        if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+    set firstname(s) {
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
             let ss = s.trim();
             let n = ss.length;
             if (n > 1) {
-                this.first = ss.substr(0, 1).toUpperCase() + ss.substr(1, n - 1).toLowerCase();
+                this.first = 
+                ss.substr(0, 1).toUpperCase() + ss.substr(1, n - 1).toLowerCase();
             } else {
                 this._first = ss.toUpperCase();
             }
             this._last = s.trim().toUpperCase();
+        } else {
+            this._first = null;
         }
     }
     get has_firstname() {
-            rturn(this.firstname != null);
+            return(this.firstname !== null);
         }
         //
     get fullname() {
@@ -194,66 +199,72 @@ export class Person extends DescriptionItem {
             return (s.length > 0) ? s : null;
         } // fullname
     get has_fullname() {
-            return (this.fullname != null);
+            return (this.fullname !== null);
         }
         //
     get password() {
-        return (this._pass != undefined) ? this._pass : null;
+        return (this._pass !== undefined) ? this._pass : null;
     }
-    set passord(s) {
-        if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+    set password(s) {
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
             this._pass = s.trim();
+        }else {
+            this._pass = null;
         }
     }
     get has_password() {
-            rturn(this.password != null);
+            return(this.password !== null);
         }
         //  
     get email() {
-        return (this._email != undefined) ? this._email : null;
+        return (this._email !== undefined) ? this._email : null;
     }
     set email(s) {
-        if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
             this._email = s.trim();
+        } else {
+            this._email = null;
         }
     }
     get has_email() {
-            rturn(this.email != null);
+            return (this.email !== null);
         }
         //
         //  
     get phone() {
-        return (this._phone != undefined) ? this._phone : null;
+        return (this._phone !== undefined) ? this._phone : null;
     }
     set phone(s) {
-        if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
             this._phone = s.trim();
+        } else {
+            this._phone = null;
         }
     }
     get has_phone() {
-            rturn(this.phone != null);
+            return (this.phone !== null);
         }
         //
     to_insert_map(oMap) {
             super.to_insert_map(oMap);
-            if ((oMap != undefined) && (oMap != null)) {
+            if ((oMap !== undefined) && (oMap !== null)) {
                 if (this.has_username) {
-                    oMap['username'] = this.username;
+                    oMap.username = this.username;
                 }
                 if (this.has_password) {
-                    oMap['password'] = this.password;
+                    oMap.password = this.password;
                 }
                 if (this.has_firstname) {
-                    oMap['firstname'] = this.firstname;
+                    oMap.firstname = this.firstname;
                 }
                 if (this.has_lastname) {
-                    oMap['lastname'] = this.lastname;
+                    oMap.lastname = this.lastname;
                 }
                 if (this.has_email) {
-                    oMap['email'] = this.email;
+                    oMap.email = this.email;
                 }
                 if (this.has_phone) {
-                    oMap['phone'] = this.phone;
+                    oMap.phone = this.phone;
                 }
                 if (this.has_departementids) {
                     let r = [];
@@ -261,7 +272,7 @@ export class Person extends DescriptionItem {
                         r.push(id);
                     } // id
                     if (r.length > 0) {
-                        oMap['departementids'] = r;
+                        oMap.departementids = r;
                     }
                 } //
                 if (this.has_roles) {
@@ -270,7 +281,7 @@ export class Person extends DescriptionItem {
                         r.push(id);
                     } // id
                     if (r.length > 0) {
-                        oMap['roles'] = r;
+                        oMap.roles = r;
                     }
                 } //
             } // oMap
@@ -279,8 +290,8 @@ export class Person extends DescriptionItem {
         return (this.has_username && this.has_lastname && this.has_firstname);
     }
     hasrole(r) {
-            if ((this._roles == undefined) || (this._roles == null) ||
-                (r == undefined) || (r == null)) {
+            if ((this._roles === undefined) || (this._roles === null) ||
+                (r === undefined) || (r === null)) {
                 return false;
             }
             let rr = r.trim().toLowerCase();

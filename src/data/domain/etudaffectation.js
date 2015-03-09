@@ -1,38 +1,36 @@
 // etudaffectation.js
 //
-import {
-    AffectationBaseItem
-}
-from './affectationbase';
+import { AffectationBaseItem } from './affectationbase';
 //
 class EtudAffectation extends AffectationBaseItem {
     constructor(oMap) {
             super(oMap);
         this.type = 'etudaffectation';
-            if ((oMap != undefined) && (oMap != null)) {
-                if (oMap['etudiantid'] != undefined) {
-                    this.etudiantid = oMap['etudiantid'];
+            if ((oMap !== undefined) && (oMap !== null)) {
+                if (oMap.etudiantid !== undefined) {
+                    this.etudiantid = oMap.etudiantid;
                 }
             }
         }
         //
     get etudiantid() {
-        return (this._etudid != undefined) ? this._etudid : null;
+        return (this._etudid !== undefined) ? this._etudid : null;
     }
     set etudiantid(s) {
-        this._etudid = ((s != undefined) && (s != null) && (s.trim().length > 0)) ? s.trim() : null;
+        this._etudid = ((s !== undefined) && 
+        (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
     }
     get has_etudiantid() {
-        return (this.etudiantid != null);
+        return (this.etudiantid !== null);
     }
     get is_storeable() {
         return (super.is_storeable && this.has_etudiantid);
     }
-    to_insert_map(oMap: any): void {
+    to_insert_map(oMap)  {
             super.to_insert_map(oMap);
-            if ((oMap != undefined) && (oMap != null)) {
+            if ((oMap !== undefined) && (oMap !== null)) {
                 if (this.has_etudiantid) {
-                    oMap['etudiantid'] = this.etudiantid;
+                    oMap.etudiantid = this.etudiantid;
                 }
             }
         } // to_insert_map

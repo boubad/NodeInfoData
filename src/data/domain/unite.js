@@ -9,7 +9,4 @@ export class Unite extends DepartementChildItem {
     get collection_name(){
         return 'unites';
     }
-    get type(){
-        return 'unite';
-    }
 }// class DepartementChildItem

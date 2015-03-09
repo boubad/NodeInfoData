@@ -1,8 +1,5 @@
 // departement.js
-import {
-    SigleNameItem
-}
-from './siglenameitem';
+import { SigleNameItem } from './siglenameitem';
 //
 export class Departement extends SigleNameItem {
     constructor(oMap) {
