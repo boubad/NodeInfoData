@@ -23,7 +23,7 @@ export class DataManagerBase {
             let base = 'http://localhost:52999/api';
             this._baseurl = 'http://localhost:52999/api';
             this.client = http;
-            if ((baseurl != undefined) && (baseurl != null)) {
+            if ((baseurl !== undefined) && (baseurl !== null)) {
                 base = baseurl;
             }
             this._baseurl = base;
@@ -35,13 +35,13 @@ export class DataManagerBase {
         }
     //
     create_item(oMap){
-        if ((oMap == undefined) || (oMap == null)){
+        if ((oMap === undefined) || (oMap === null)){
             return null;
         }
-        if ((oMap['type'] == undefined) || (oMap['type'] == null)){
+        if ((oMap.type === undefined) || (oMap.type === null)){
             return null;
         }
-        let t = oMap['type'];
+        let t = oMap.type;
         t = t.trim().toLowerCase();
         if (t == 'administrator'){
             return new Administrator(oMap);
@@ -80,10 +80,10 @@ export class DataManagerBase {
     }// create_Item
     convert_items(dd){
         let vRet = [];
-        if ((dd != undefined) && (dd != null) && (dd.length > 0)){
+        if ((dd !== undefined) && (dd !== null) && (dd.length > 0)){
             for (let i = 0; i < dd.length; ++i){
                 let r = this.create_item(dd[i]);
-                if ((r != undefined) && (r != null)){
+                if ((r !== undefined) && (r !== null)){
                     vRet.push(r);
                 }
             }// i
@@ -92,25 +92,25 @@ export class DataManagerBase {
     }// convert_items
         //
     get baseUrl() {
-            return (this._baseurl != undefined) ? this._baseurl : null;
+            return (this._baseurl !== undefined) ? this._baseurl : null;
         } // baseUrl
         //
     form_url(prefix, params, query) {
             let sRet = '';
-            if ((prefix != undefined) && (prefix != null)) {
+            if ((prefix !== undefined) && (prefix !== null)) {
                 sRet = prefix;
             }
-            if ((params != undefined) && (params != null)) {
+            if ((params !== undefined) && (params !== null)) {
                 let n = params.length;
                 for (let i = 0; i < n; ++i) {
                     sRet = sRet + '/' + encodeURIComponent(params[i]);
                 } // i
             }
-            if ((query != undefined) && (query != null)) {
+            if ((query !== undefined) && (query !== null)) {
                 let bFirst = true;
                 for (let key in query) {
                     let v = query[key];
-                    if (v != null) {
+                    if (v !== null) {
                         if (bFirst) {
                             bFirst = false;
                             sRet = sRet + '?';
@@ -125,12 +125,14 @@ export class DataManagerBase {
         } // form_url
         //
     get_items_count(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.collection_name == undefined) || (item.collection_name == null) || (item.to_fetch_map == undefined)) {
+            if ((item.collection_name === undefined) ||
+            (item.collection_name === null) ||
+            (item.to_fetch_map === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('item is not a BaseItem.'));
                 });
@@ -138,7 +140,7 @@ export class DataManagerBase {
             let nRet = 0;
             let data = {};
             item.to_fetch_map(data);
-            data['$count'] = 1;
+            data.$count = 1;
             let url = this.form_url(item.collection_name, null, data);
             return this.client.get(url).then(rsp => {
                 if (rsp.isSuccess) {
@@ -149,23 +151,27 @@ export class DataManagerBase {
         } // get_items_count
         //
     get_items(item, offset, limit) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.collection_name == undefined) || (item.collection_name == null) || (item.to_fetch_map == undefined)) {
+            if ((item.collection_name === undefined) ||
+            (item.collection_name === null) || 
+            (item.to_fetch_map === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('item is not a BaseItem.'));
                 });
             }
             let data = {};
             item.to_fetch_map(data);
-            if ((offset != undefined) && (offset != null) && (offset >= 0)) {
-                data['$skip'] = offset;
+            if ((offset !== undefined) &&
+            (offset !== null) && (offset >= 0)) {
+                data.$skip = offset;
             }
-            if ((limit != undefined) && (limit != null) && (limit > 0)) {
-                data['$limit'] = limit;
+            if ((limit !== undefined) && 
+            (limit !== null) && (limit > 0)) {
+                data.$limit = limit;
             }
             let url = this.form_url(item.collection_name, null, data);
             return this.client.get(url).then((rsp) => {
@@ -177,12 +183,15 @@ export class DataManagerBase {
             });
         } // get_items
     get_one_item(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || 
+            (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.collection_name == undefined) || (item.collection_name == null) || (item.to_fetch_map == undefined)) {
+            if ((item.collection_name === undefined) || 
+            (item.collection_name === null) ||
+            (item.to_fetch_map === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('item is not a BaseItem.'));
                 });
@@ -194,7 +203,8 @@ export class DataManagerBase {
                 let vRet = null;
                 if (rsp.isSuccess) {
                     let xx = rsp.content;
-                    if ((xx != undefined) && (xx != null) && (xx.length > 0)) {
+                    if ((xx !== undefined) && (xx !== null) &&
+                    (xx.length > 0)) {
                         vRet = xx[0];
                     }
                 }
@@ -202,13 +212,14 @@ export class DataManagerBase {
             });
         } // get_one_item
     find_item_by_id(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.id == undefined) || (item.id == null) ||
-                (item.collection_name == undefined) || (item.collection_name == null)) {
+            if ((item.id === undefined) || (item.id === null) ||
+                (item.collection_name === undefined) ||
+                (item.collection_name === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
@@ -219,7 +230,8 @@ export class DataManagerBase {
                 let vRet = null;
                 if (rsp.isSuccess) {
                     let xx = rsp.content;
-                    if ((xx != undefined) && (xx != null) && (xx.length > 0)) {
+                    if ((xx !== undefined) &&
+                    (xx !== null) && (xx.length > 0)) {
                         vRet = xx[0];
                     }
                 }
@@ -227,13 +239,15 @@ export class DataManagerBase {
             });
         } // find_item_byid
     insert_item(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.to_insert_map == undefined) ||
-                (item.collection_name == undefined) || (item.collection_name == null) || (item.is_storeable == undefined)) {
+            if ((item.to_insert_map === undefined) ||
+                (item.collection_name === undefined) ||
+                (item.collection_name === null) ||
+                (item.is_storeable === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
@@ -255,13 +269,18 @@ export class DataManagerBase {
             });
         } // insert_item
     update_item(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || 
+            (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.id == undefined) || (item.id == null) || (item.to_insert_map == undefined) ||
-                (item.collection_name == undefined) || (item.collection_name == null) || (item.is_storeable == undefined)) {
+            if ((item.id === undefined) ||
+            (item.id === null) ||
+            (item.to_insert_map === undefined) ||
+                (item.collection_name === undefined) ||
+                (item.collection_name === null) ||
+                (item.is_storeable === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
@@ -283,13 +302,14 @@ export class DataManagerBase {
             });
         } // update_item
     remove_item(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.id == undefined) || (item.id == null) ||
-                (item.collection_name == undefined) || (item.collection_name == null)) {
+            if ((item.id === undefined) || (item.id === null) ||
+                (item.collection_name === undefined) ||
+                (item.collection_name === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
@@ -304,13 +324,16 @@ export class DataManagerBase {
             });
         } // remove_item
     maintains_item(item) {
-            if ((item == undefined) || (item == null)) {
+            if ((item === undefined) || (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.has_id == undefined) || (item.to_insert_map == undefined) ||
-                (item.collection_name == undefined) || (item.collection_name == null) || (item.is_storeable == undefined)) {
+            if ((item.has_id === undefined) ||
+            (item.to_insert_map === undefined) ||
+                (item.collection_name === undefined) ||
+                (item.collection_name === null) ||
+                (item.is_storeable === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
@@ -343,8 +366,9 @@ export class DataManagerBase {
             }
         } // maintains_item
     get_items_array(collectionName,ids){
-        if ((collectionName == undefined) ||
-            (collectionName == null) || (ids == undefined) || (ids == null)){
+        if ((collectionName === undefined) ||
+            (collectionName === null) ||
+            (ids === undefined) || (ids === null)){
             return new Promise((resolve,reject)=>{
                 reject(new Error('invalid argument(s)'));
             });
@@ -353,7 +377,7 @@ export class DataManagerBase {
         let xx = [];
         for (let i = 0; i < n; ++i){
             let x = ids[i];
-            if ((x != undefined) && (x != null) && (x.trim().length > 0)){
+            if ((x !== undefined) && (x !== null) && (x.trim().length > 0)){
                   xx.push(x.trim());
                  }
         }// i
@@ -378,7 +402,7 @@ export class DataManagerBase {
                     if (k == (nx -1)){
                         resolve(xr);
                     }
-                }).catch((err)=>{
+                }).catch(()=>{
                      if (k == (nx -1)){
                         resolve(xr);
                     }

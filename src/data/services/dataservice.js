@@ -1,45 +1,15 @@
 //dataservice.js
 //
-import {
-    HttpClient
-}
-from 'aurelia-http-client';
-import {
-    DataManagerBase
-}
-from './datamanagerbase';
-import {
-    Departement
-}
-from '../domain/departement';
-import {
-    Person
-}
-from '../domain/person';
-import {
-    Administrator
-}
-from '../domain/administrator';
-import {
-    Operator
-}
-from '../domain/operator';
-import {
-    Enseignant
-}
-from '../domain/enseignant';
-import {
-    Etudiant
-}
-from '../domain/etudiant';
-import {
-    Annees
-}
-from '../domain/annee';
-import {
-    Semestre
-}
-from '../domain/semestre';
+import { HttpClient } from 'aurelia-http-client';
+import { DataManagerBase } from './datamanagerbase';
+import { Departement } from '../domain/departement';
+import { Person } from '../domain/person';
+import { Administrator } from '../domain/administrator';
+import { Operator } from '../domain/operator';
+import { Enseignant } from '../domain/enseignant';
+import { Etudiant } from '../domain/etudiant';
+import { Annee } from '../domain/annee';
+import { Semestre } from '../domain/semestre';
 //
 export class DataService extends DataManagerBase {
     static inject() {
@@ -50,7 +20,7 @@ export class DataService extends DataManagerBase {
         } // constructor
         //
     get_person_departements(p) {
-            if ((p == undefined) || (p == null)) {
+            if ((p === undefined) || (p === null)) {
                 return new Promise((resolve, reject) => {
                     resolve([]);
                 });
@@ -70,7 +40,7 @@ export class DataService extends DataManagerBase {
         } // get_person_departements
         //
     get_departement_annees(dep) {
-            if ((dep == undefined) || (dep == null)) {
+            if ((dep === undefined) || (dep === null)) {
                 return new Promise((resolve, reject) => {
                     resolve([]);
                 });
@@ -87,7 +57,7 @@ export class DataService extends DataManagerBase {
         } // get_departement_annees
         //
     get_annee_semestres(p) {
-            if ((p == undefined) || (p == null)) {
+            if ((p === undefined) || (p === null)) {
                 return new Promise((resolve, reject) => {
                     resolve([]);
                 });
@@ -105,12 +75,12 @@ export class DataService extends DataManagerBase {
         //
     find_person_by_username_password(suser, spass) {
             let model = new Person({
-                username: ruser
+                username: suser
             });
             let self = this;
             return this.get_one_item(model).then((r) => {
                 let vRet = null;
-                if ((r != undefined) && (r != null)) {
+                if ((r !== undefined) && (r !== null)) {
                     if (r.check_password(spass)) {
                         vRet = r;
                     }
@@ -135,7 +105,7 @@ export class DataService extends DataManagerBase {
             return this.maintains_item(model);
         } // maindains_departement
     find_departement_by_id(id) {
-            if ((id == undefined) || (id == null)) {
+            if ((id === undefined) || (id === null)) {
                 return new Promise((resolve, reject) => {
                     resolve(null);
                 });
@@ -144,7 +114,7 @@ export class DataService extends DataManagerBase {
             model.id = id;
             return this.find_item_by_id(model).then((r) => {
                 let xr = null;
-                if ((r != undefined) && (r != null)) {
+                if ((r !== undefined) && (r !== null)) {
                     xr = new Departement(r);
                 }
                 return xr;
