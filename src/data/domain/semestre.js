@@ -7,6 +7,7 @@ from './intervalitem';
 export class Semestre extends IntervalItem {
     constructor(oMap) {
         super(oMap);
+        this.type = 'semestre';
         if ((oMap != undefined) && (oMap != null)){
             if (oMap['anneeid'] != undefined){
                 this.anneeid = oMap['anneeid'];

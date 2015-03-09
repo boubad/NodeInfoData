@@ -5,6 +5,7 @@ export class GroupeEvent extends DescriptionItem {
     //
     constructor(oMap){
         super(oMap);
+        this.type = 'groupeevent';
         if ((oMap != undefined) && (oMap != null)){
             if (oMap['profaffectationid'] != undefined){
                 this.profaffectationid = oMap['profaffectationid'];

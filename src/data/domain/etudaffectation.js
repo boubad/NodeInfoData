@@ -8,6 +8,7 @@ from './affectationbase';
 class EtudAffectation extends AffectationBaseItem {
     constructor(oMap) {
             super(oMap);
+        this.type = 'etudaffectation';
             if ((oMap != undefined) && (oMap != null)) {
                 if (oMap['etudiantid'] != undefined) {
                     this.etudiantid = oMap['etudiantid'];

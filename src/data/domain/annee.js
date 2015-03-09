@@ -7,6 +7,7 @@ from './intervalitem';
 export class Annee extends IntervalItem {
     constructor(oMap) {
         super(oMap);
+        this.type='annee';
     }
     get collection_name() {
         return 'annees';

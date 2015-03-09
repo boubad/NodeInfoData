@@ -8,6 +8,7 @@ export class Matiere extends DepartementChildItem {
     //
     constructor(oMap) {
             super(oMap);
+        this.type = 'matiere';
             if ((oMap != undefined) && (oMap != null)) {
                 if (oMap['uniteid'] != undefined) {
                     this.uniteid = oMap['uniteid'];

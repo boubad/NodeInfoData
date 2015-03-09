@@ -9,6 +9,7 @@ class ProfAffectation extends AffectationBaseItem {
     //
     constructor(oMap) {
             super(oMap);
+        this.type = 'profaffectation';
             if ((oMap != undefined) && (oMap != null)) {
                 if (oMap['enseignantid'] != undefined) {
                     this.enseignantid = oMap['enseignantid'];

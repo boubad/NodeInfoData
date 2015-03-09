@@ -9,6 +9,9 @@ export class BaseItem {
                 if (oMap['_rev'] != undefined) {
                     this.rev = oMap['_rev'];
                 }
+                if (oMap['type'] != undefined){
+                    this.type = oMap['type'];
+                }
             } // oMap
         } // constructor
         //
@@ -45,7 +48,22 @@ export class BaseItem {
     get collection_name() {
         return null;
     }
-    to_insert_map(oMap) {} // toInsertMap
+    get type(){
+        return (this._type != undefined) ? this._type : null;
+    }
+    set type(s){
+        this._type = ((s != undefined) && (s != null) && (s.trim().length > 0)) ? s.trim().toLowerCase() : null;
+    }
+    get has_type(){
+        return (this.type != null);
+    }
+    to_insert_map(oMap) {
+        if ((oMap != null) && (oMap != null)){
+            if (this.has_type){
+                oMap['type'] = this.type;
+            }
+        }
+    } // toInsertMap
     to_fetch_map(oMap: any): void {
             if ((oMap != undefined) && (oMap != null)) {
                 this.to_insert_map(oMap);

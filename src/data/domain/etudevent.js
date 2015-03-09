@@ -8,6 +8,7 @@ export class EtudEvent extends DescriptionItem {
     //
     constructor(oMap) {
             super(oMap);
+        this.type = 'etudevent';
             if ((oMap != undefined) && (oMap != null)) {
                 if (oMap['departementid'] != undefined) {
                     this.departementid = oMap['departementid'];

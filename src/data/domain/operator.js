@@ -4,6 +4,7 @@ import {DescriptionItem} from './descriptionitem';
 export class Operator extends DescriptionItem {
     constructor(oMap){
         super(oMap);
+        this.type = 'operator';
         if ((oMap != undefined) && (oMap != null)){
             if (oMap['departementid'] != undefined){
                 this.departementid = oMap['departementid'];

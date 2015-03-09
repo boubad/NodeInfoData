@@ -7,6 +7,7 @@ from './descriptionitem';
 export class Etudiant extends DescriptionItem {
     constructor(oMap) {
             super(oMap);
+        this.type = 'etudiant';
             if ((oMap != undefined) && (oMap != null)) {
                 if (oMap['departementid'] != undefined) {
                     this.departementid = oMap['departementid'];

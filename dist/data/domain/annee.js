@@ -22,6 +22,7 @@ System.register(["./intervalitem"], function (_export) {
                     _classCallCheck(this, Annee);
 
                     _get(Object.getPrototypeOf(Annee.prototype), "constructor", this).call(this, oMap);
+                    this.type = "annee";
                 }
 
                 _inherits(Annee, _IntervalItem);
@@ -41,4 +42,4 @@ System.register(["./intervalitem"], function (_export) {
 });
 // annee.js
 // class Annee
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2FubmVlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFFSSxZQUFZLGtEQUlILEtBQUs7Ozs7QUFKZCx3QkFBWSxpQkFBWixZQUFZOzs7Ozs7Ozs7Ozs7OztBQUlILGlCQUFLO0FBQ0gseUJBREYsS0FBSyxDQUNGLElBQUksRUFBRTswQ0FEVCxLQUFLOztBQUVWLCtDQUZLLEtBQUssNkNBRUosSUFBSSxFQUFFO2lCQUNmOzswQkFIUSxLQUFLOzs2QkFBTCxLQUFLO0FBSVYsbUNBQWU7NkJBQUEsWUFBRztBQUNsQixtQ0FBTyxRQUFRLENBQUM7eUJBQ25COzs7O3VCQU5RLEtBQUs7ZUFBUyxZQUFZIiwiZmlsZSI6ImRhdGEvZG9tYWluL2FubmVlLmpzIiwic291cmNlUm9vdCI6Ii9zcmMvIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2FubmVlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFFSSxZQUFZLGtEQUlILEtBQUs7Ozs7QUFKZCx3QkFBWSxpQkFBWixZQUFZOzs7Ozs7Ozs7Ozs7OztBQUlILGlCQUFLO0FBQ0gseUJBREYsS0FBSyxDQUNGLElBQUksRUFBRTswQ0FEVCxLQUFLOztBQUVWLCtDQUZLLEtBQUssNkNBRUosSUFBSSxFQUFFO0FBQ1osd0JBQUksQ0FBQyxJQUFJLEdBQUMsT0FBTyxDQUFDO2lCQUNyQjs7MEJBSlEsS0FBSzs7NkJBQUwsS0FBSztBQUtWLG1DQUFlOzZCQUFBLFlBQUc7QUFDbEIsbUNBQU8sUUFBUSxDQUFDO3lCQUNuQjs7Ozt1QkFQUSxLQUFLO2VBQVMsWUFBWSIsImZpbGUiOiJkYXRhL2RvbWFpbi9hbm5lZS5qcyIsInNvdXJjZVJvb3QiOiIvc3JjLyJ9

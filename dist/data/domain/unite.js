@@ -22,6 +22,7 @@ System.register(["./departementchild"], function (_export) {
                     _classCallCheck(this, Unite);
 
                     _get(Object.getPrototypeOf(Unite.prototype), "constructor", this).call(this, oMap);
+                    this.type = "unite";
                 }
 
                 _inherits(Unite, _DepartementChildItem);
@@ -30,6 +31,11 @@ System.register(["./departementchild"], function (_export) {
                     collection_name: {
                         get: function () {
                             return "unites";
+                        }
+                    },
+                    type: {
+                        get: function () {
+                            return "unite";
                         }
                     }
                 });
@@ -41,4 +47,4 @@ System.register(["./departementchild"], function (_export) {
 });
 // unite.js
 // class DepartementChildItem
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL3VuaXRlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFDUSxvQkFBb0Isa0RBRWYsS0FBSzs7OztBQUZWLGdDQUFvQixxQkFBcEIsb0JBQW9COzs7Ozs7Ozs7Ozs7OztBQUVmLGlCQUFLO0FBQ0gseUJBREYsS0FBSyxDQUNGLElBQUksRUFBQzswQ0FEUixLQUFLOztBQUVWLCtDQUZLLEtBQUssNkNBRUosSUFBSSxFQUFFO2lCQUNmOzswQkFIUSxLQUFLOzs2QkFBTCxLQUFLO0FBSVYsbUNBQWU7NkJBQUEsWUFBRTtBQUNqQixtQ0FBTyxRQUFRLENBQUM7eUJBQ25COzs7O3VCQU5RLEtBQUs7ZUFBUyxvQkFBb0IiLCJmaWxlIjoiZGF0YS9kb21haW4vdW5pdGUuanMiLCJzb3VyY2VSb290IjoiL3NyYy8ifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL3VuaXRlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFDUSxvQkFBb0Isa0RBRWYsS0FBSzs7OztBQUZWLGdDQUFvQixxQkFBcEIsb0JBQW9COzs7Ozs7Ozs7Ozs7OztBQUVmLGlCQUFLO0FBQ0gseUJBREYsS0FBSyxDQUNGLElBQUksRUFBQzswQ0FEUixLQUFLOztBQUVWLCtDQUZLLEtBQUssNkNBRUosSUFBSSxFQUFFO0FBQ1osd0JBQUksQ0FBQyxJQUFJLEdBQUcsT0FBTyxDQUFDO2lCQUN2Qjs7MEJBSlEsS0FBSzs7NkJBQUwsS0FBSztBQUtWLG1DQUFlOzZCQUFBLFlBQUU7QUFDakIsbUNBQU8sUUFBUSxDQUFDO3lCQUNuQjs7QUFDRyx3QkFBSTs2QkFBQSxZQUFFO0FBQ04sbUNBQU8sT0FBTyxDQUFDO3lCQUNsQjs7Ozt1QkFWUSxLQUFLO2VBQVMsb0JBQW9CIiwiZmlsZSI6ImRhdGEvZG9tYWluL3VuaXRlLmpzIiwic291cmNlUm9vdCI6Ii9zcmMvIn0=

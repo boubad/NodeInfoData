@@ -5,6 +5,7 @@ import {DescriptionItem} from './descriptionitem';
 export class AttachedDoc extends DescriptionItem {
 	constructor(oMap){
         super(oMap);
+        this.type = 'attacheddoc';
 		if ((oMap != undefined) && (oMap != null)){
 			if ((oMap['mimetype']!= undefined) && (oMap['mimetype'] != null)){
 				this.mimetype = oMap['mimetype'];

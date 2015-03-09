@@ -1,9 +1,9 @@
-System.register(["./siglenameitem"], function (_export) {
-    var SigleNameItem, _createClass, _get, _inherits, _classCallCheck, Departement;
+System.register(["./departementchild"], function (_export) {
+    var DepartementChildItem, _createClass, _get, _inherits, _classCallCheck, Groupe;
 
     return {
-        setters: [function (_siglenameitem) {
-            SigleNameItem = _siglenameitem.SigleNameItem;
+        setters: [function (_departementchild) {
+            DepartementChildItem = _departementchild.DepartementChildItem;
         }],
         execute: function () {
             "use strict";
@@ -17,30 +17,29 @@ System.register(["./siglenameitem"], function (_export) {
             _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
             //
-            Departement = _export("Departement", (function (_SigleNameItem) {
-                function Departement(oMap) {
-                    _classCallCheck(this, Departement);
+            Groupe = _export("Groupe", (function (_DepartementChildItem) {
+                function Groupe(oMap) {
+                    _classCallCheck(this, Groupe);
 
-                    _get(Object.getPrototypeOf(Departement.prototype), "constructor", this).call(this, oMap);
-                    this.type = "departement";
+                    _get(Object.getPrototypeOf(Groupe.prototype), "constructor", this).call(this, oMap);
+                    this.type = "groupe";
                 }
 
-                _inherits(Departement, _SigleNameItem);
+                _inherits(Groupe, _DepartementChildItem);
 
-                _createClass(Departement, {
-                    collection_name: { // constructor
-
+                _createClass(Groupe, {
+                    collection_name: {
                         get: function () {
-                            return "departements";
+                            return "groupes";
                         }
                     }
                 });
 
-                return Departement;
-            })(SigleNameItem));
+                return Groupe;
+            })(DepartementChildItem));
         }
     };
 });
-// departement.js
-// class Departement
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2RlcGFydGVtZW50LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFFSSxhQUFhLGtEQUlKLFdBQVc7Ozs7QUFKcEIseUJBQWEsa0JBQWIsYUFBYTs7Ozs7Ozs7Ozs7Ozs7QUFJSix1QkFBVztBQUNULHlCQURGLFdBQVcsQ0FDUixJQUFJLEVBQUU7MENBRFQsV0FBVzs7QUFFWiwrQ0FGQyxXQUFXLDZDQUVOLElBQUksRUFBRTtBQUNoQix3QkFBSSxDQUFDLElBQUksR0FBRyxhQUFhLENBQUM7aUJBQ3pCOzswQkFKSSxXQUFXOzs2QkFBWCxXQUFXO0FBS2hCLG1DQUFlOzs2QkFBQSxZQUFHO0FBQ2xCLG1DQUFPLGNBQWMsQ0FBQzt5QkFDekI7Ozs7dUJBUFEsV0FBVztlQUFTLGFBQWEiLCJmaWxlIjoiZGF0YS9kb21haW4vZGVwYXJ0ZW1lbnQuanMiLCJzb3VyY2VSb290IjoiL3NyYy8ifQ==
+// groupe.js
+// class Groupe
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2dyb3VwZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO1FBQ1Esb0JBQW9CLGtEQUVmLE1BQU07Ozs7QUFGWCxnQ0FBb0IscUJBQXBCLG9CQUFvQjs7Ozs7Ozs7Ozs7Ozs7QUFFZixrQkFBTTtBQUNKLHlCQURGLE1BQU0sQ0FDSCxJQUFJLEVBQUM7MENBRFIsTUFBTTs7QUFFWCwrQ0FGSyxNQUFNLDZDQUVMLElBQUksRUFBRTtBQUNaLHdCQUFJLENBQUMsSUFBSSxHQUFHLFFBQVEsQ0FBQztpQkFDeEI7OzBCQUpRLE1BQU07OzZCQUFOLE1BQU07QUFLWCxtQ0FBZTs2QkFBQSxZQUFFO0FBQ2pCLG1DQUFPLFNBQVMsQ0FBQzt5QkFDcEI7Ozs7dUJBUFEsTUFBTTtlQUFTLG9CQUFvQiIsImZpbGUiOiJkYXRhL2RvbWFpbi9ncm91cGUuanMiLCJzb3VyY2VSb290IjoiL3NyYy8ifQ==
