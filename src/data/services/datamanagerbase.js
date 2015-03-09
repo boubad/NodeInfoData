@@ -1,8 +1,5 @@
 // datamanagerbase.js
-import {
-    HttpClient
-}
-from 'aurelia-http-client';
+import { HttpClient } from 'aurelia-http-client';
 //
 import {Administrator} from '../domain/administrator';
 import {Annee} from '../domain/annee';
