@@ -17,7 +17,8 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.persons.ensureIndex({
         email: 1
     });
-    db.persons.insert({username:'admin',password:'bouba256',lastname:'SYSTSEM',   firstname:'Administrator',
+    db.persons.insert({username:'admin',
+            password:'eb2b7a4cdb39d84c45261dac74bc8116',lastname:'SYSTSEM',   firstname:'Administrator',
             roles:['super','admin','oper','prof','etud','reader'],type:'administrator'});
     print("persons indexes OK...");
     //

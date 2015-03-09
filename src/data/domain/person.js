@@ -4,10 +4,15 @@ import {
 }
 from './descriptionitem';
 //
+import {
+    Crypto
+}
+from '../utils/crypto';
+//
 export class Person extends DescriptionItem {
     constructor(oMap) {
             super(oMap);
-        this.type = 'person';
+            this.type = 'person';
             if ((oMap != undefined) && (oMap != null)) {
                 if (oMap['username'] != undefined) {
                     this.username = oMap['username'];
@@ -35,6 +40,46 @@ export class Person extends DescriptionItem {
                 } //
             } // oMap
         } // constructor
+    reset_password() {
+        if (this.has_username) {
+            let cc = new Crypto();
+            this.password = cc.md5(this.username);
+        } else {
+            this.password = null;
+        }
+    }
+    change_password(ct) {
+        if ((ct == undefined) || (ct == null)) {
+            this.password = null;
+        } else {
+            let v = null;
+            let x = ct.trim();
+            if (x.length > 0) {
+                let cc = new Crypto();
+                v = cc.md5(this.username);
+            }
+            this.password = v;
+        }
+    }
+    check_password(ct) {
+            if ((ct == undefined) || (ct == null)) {
+                if (this.has_password) {
+                    return false;
+                }
+            }
+            let x = ct.trim();
+            if (x.length < 1) {
+                if (this.has_password) {
+                    return false;
+                }
+            }
+            if (!this.has_password) {
+                return false;
+            }
+            let cc = new Crypto();
+            v = cc.md5(x);
+            return (this.password == v);
+        } // check_password
     get departementids() {
             return ((this._deps != undefined) && (this._deps != null)) ? this._deps : null;
         } // getDepartementids
@@ -233,41 +278,41 @@ export class Person extends DescriptionItem {
     get is_storeable() {
         return (this.has_username && this.has_lastname && this.has_firstname);
     }
-    hasrole(r){
-        if ((this._roles == undefined) || (this._roles == null) ||
-            (r == undefined) || (r == null)){
-            return false;
-        }
-        let rr = r.trim().toLowerCase();
-        if (rr.length < 1){
-            return false;
-        }
-        for (let x of this._roles){
-            if (x == rr){
-                return true;
+    hasrole(r) {
+            if ((this._roles == undefined) || (this._roles == null) ||
+                (r == undefined) || (r == null)) {
+                return false;
             }
-        }// x
-        return false;
-    }// hasrole_
-    get is_admin(){
+            let rr = r.trim().toLowerCase();
+            if (rr.length < 1) {
+                return false;
+            }
+            for (let x of this._roles) {
+                if (x == rr) {
+                    return true;
+                }
+            } // x
+            return false;
+        } // hasrole_
+    get is_admin() {
         return this.hasrole('admin');
     }
-    get is_oper(){
+    get is_oper() {
         return this.hasrole('oper');
     }
-    get is_prof(){
+    get is_prof() {
         return this.hasrole('prof');
     }
-    get is_etud(){
+    get is_etud() {
         return this.hasrole('etud');
     }
-    get is_reader(){
+    get is_reader() {
         return this.hasrole('reader');
     }
-    get is_super(){
+    get is_super() {
         return this.hasrole('super');
     }
-    get has_departementid(){
+    get has_departementid() {
         return false;
     }
 } // class Person
