@@ -98,7 +98,7 @@ export class DataManagerBase {
             return (this._baseurl != undefined) ? this._baseurl : null;
         } // baseUrl
         //
-    static form_url(prefix, params, query) {
+    form_url(prefix, params, query) {
             let sRet = '';
             if ((prefix != undefined) && (prefix != null)) {
                 sRet = prefix;

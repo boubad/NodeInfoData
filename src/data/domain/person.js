@@ -295,7 +295,7 @@ export class Person extends DescriptionItem {
             return false;
         } // hasrole_
     get is_admin() {
-        return this.hasrole('admin');
+        return (this.has_role('super') || this.hasrole('admin'));
     }
     get is_oper() {
         return this.hasrole('oper');
