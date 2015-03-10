@@ -29,6 +29,9 @@ export class Person extends DescriptionItem {
                 if (oMap.departementids !== undefined) {
                     this.departementids = oMap.departementids;
                 } //
+                if (oMap.infoid !== undefined){
+                    this.infoid = oMap.infoid;
+                }
                 if (oMap.roles !== undefined) {
                     this.roles = oMap.roles;
                 } //
@@ -136,6 +139,19 @@ export class Person extends DescriptionItem {
         //
     get collection_name() {
         return "persons";
+    }
+    get infoid(){
+        return (this._infoid !== undefined) ? this._infoid : null;
+    }
+    set infoid(s){
+        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)){
+            this._infoid = s.trim();
+        } else {
+            this._infoid = null;
+        }
+    }
+    get has_infoid(){
+        return (this.infoid !== null);
     }
     get username() {
         return (this._user !== undefined) ? this._user : null;
@@ -265,6 +281,9 @@ export class Person extends DescriptionItem {
                 }
                 if (this.has_phone) {
                     oMap.phone = this.phone;
+                }
+                if (this.has_infoid){
+                    oMap.infoid = this.infoid;
                 }
                 if (this.has_departementids) {
                     let r = [];

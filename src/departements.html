@@ -1,0 +1,71 @@
+<template>
+<div class="container">
+	<div class="page-header">
+		<h1>${title}</h1>
+	</div>
+	<div show.bind="hasError">
+		<p class="text-danger">${error}</p>
+	</div>
+	<div show.bind="hasInfo">
+		<p class="text-success">${info}</p>
+	</div>
+	<div class="row">
+		<div if.bind="hasItems" class="col-xs-4">
+			<div if.bind="hasPages">
+				<ul class="pager">
+					<li><a show.bind="canPrevPage" click.trigger="firstPage()"
+						href="#">Debut</a></li>
+					<li><a show.bind="canPrevPage" click.trigger="prevPage()"
+						href="#">Precedent</a></li>
+					<li><a show.bind="canNextPage" click.trigger="nextPage()"
+						href="#">Suivant</a></li>
+					<li><a show.bind="canNextPage" click.trigger="lastPage()"
+						href="#">Fin</a></li>
+				</ul>
+				<div if.bind="hasStatus">
+					<p class="text-primary">${status}</p>
+				</div>
+			</div>
+			<form role="form">
+				<select class="form-control" selected-item.bind="current" size='16'>
+					<option repeat.for="item of items" value.bind="item.id"
+						model.bind="item">${item.name}</option>
+				</select>
+			</form>
+		</div>
+		<div class="col-xs-6">
+			<div>
+				<button type="button" class="btn btn-primary"
+					click.trigger="refreshAll()">Refresh</button>
+			</div>
+			<form role="form">
+				<div class="form-group">
+					<label for="sigle">Abbreviation:</label> <input type="text"
+						class="form-control" id="sigle" value.bind="sigle"
+						placeholder="Abbreviation">
+				</div>
+				<div class="form-group">
+					<label for="nom">Nom complet:</label> <input type="text"
+						class="form-control" id="nom" value.bind="name"
+						placeholder="Nom complet">
+				</div>
+				<div class="form-group">
+					<label for="rem">Description:</label>
+					<textarea id="rem" value.bind="description" rows="6"
+						placeholder="Description"></textarea>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary"
+						click.trigger="addNew()">Nouveau</button>
+					<button type="button" class="btn btn-primary" show.bind="canCancel"
+						click.trigger="cancel()">Annuler</button>
+					<button type="button" class="btn btn-primary" show.bind="canSave"
+						click.trigger="save()">Enregistrer</button>
+					<button type="button" class="btn btn-primary"
+						click.trigger="remove()" show.bind="canRemove">Supprimer</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</template>

@@ -14,6 +14,7 @@ import {GroupeEvent} from '../domain/groupeevent';
 import {Matiere} from '../domain/matiere';
 import {Operator} from '../domain/operator';
 import {Person} from '../domain/person';
+import {PersonInfo} from '../domain/personinfo';
 import {ProfAffectation} from '../domain/profaffectation';
 import {Semestre} from '../domain/semestre';
 import {Unite} from '../domain/unite';
@@ -75,6 +76,8 @@ export class DataManagerBase {
             return new Semestre(oMap);
         }else if (t == 'unite'){
             return new Unite(oMap);
+        }else if (t == 'personinfo'){
+            return new PersonInfo(oMap);
         }
         return null;
     }// create_Item

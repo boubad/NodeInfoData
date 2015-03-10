@@ -14,6 +14,7 @@ System.config({
     "aurelia-framework": "github:aurelia/framework@0.8.8",
     "aurelia-http-client": "github:aurelia/http-client@0.5.5",
     "aurelia-router": "github:aurelia/router@0.5.8",
+    "aurelia-event-aggregator": "github:aurelia/event-aggregator@0.2.4",
     "blueimp-md5": "npm:blueimp-md5@1.1.0",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "font-awesome": "npm:font-awesome@4.3.0",

@@ -21,6 +21,8 @@ db.departements.ensureIndex({sigle:1},{unique:true});
             password:'eb2b7a4cdb39d84c45261dac74bc8116',lastname:'SYSTSEM',   firstname:'Administrator',
             roles:['super','admin','oper','prof','etud','reader'],type:'administrator'});
     print("persons indexes OK...");
+//
+    db.personinfos.ensureIndex({personid:1},{unique:true});
     //
     db.administrators.ensureIndex({
         departementid: 1
