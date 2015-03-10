@@ -1,21 +1,22 @@
 {
-    "name": "infodataserver",
-    "version": "0.0.1",
-    "description": "InfoDataSever.",
-    "keywords": [
+  "name": "infodataserver",
+  "version": "0.0.1",
+  "description": "InfoDataSever.",
+  "keywords": [
     "indodata",
     "mongodb",
     "restfull"
   ],
-    "license": "MIT",
-    "author": "Boubacar Diarra <boubadiarra@gmail.com>",
-    "main": "server.js",
-    "dependencies": {
-        "body-parser": "*",
-        "cors": "*",
-        "express": "*",
-        "mongodb": "*",
-        "mongoskin": "*",
-        "morgan": "*"
-    }
+  "license": "MIT",
+  "author": "Boubacar Diarra <boubadiarra@gmail.com>",
+  "main": "server.js",
+  "dependencies": {
+    "bluebird": "^2.9.13",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "mongodb": "*",
+    "mongoskin": "*",
+    "morgan": "*"
+  }
 }
