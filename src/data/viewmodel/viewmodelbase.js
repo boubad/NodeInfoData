@@ -1,10 +1,12 @@
 //viewmodelbase.js
 //
 import {DataService} from '../services/dataservice';
+import {UserInfoBase} from './userinfobase';
 //
 export class ViewModelBase {
-    constructor(dataService) {
+    constructor(dataService,userInfo) {
             this.dataService = dataService;
+            this.userInfo = userInfo;
             this.title = null;
             this._error = null;
             this._info = null;
