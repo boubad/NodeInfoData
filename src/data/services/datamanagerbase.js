@@ -70,14 +70,14 @@ export class DataManagerBase {
             return new Operator(oMap);
         }else if (t == 'person'){
             return new Person(oMap);
+        }else if (t == 'personinfo'){
+            return new PersonInfo(oMap);
         }else if (t == 'profaffectation'){
             return new ProfAffectation(oMap);
         }else if (t == 'semestre'){
             return new Semestre(oMap);
         }else if (t == 'unite'){
             return new Unite(oMap);
-        }else if (t == 'personinfo'){
-            return new PersonInfo(oMap);
         }
         return null;
     }// create_Item
@@ -160,7 +160,7 @@ export class DataManagerBase {
                 });
             }
             if ((item.collection_name === undefined) ||
-            (item.collection_name === null) || 
+            (item.collection_name === null) ||
             (item.to_fetch_map === undefined)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('item is not a BaseItem.'));
@@ -172,7 +172,7 @@ export class DataManagerBase {
             (offset !== null) && (offset >= 0)) {
                 data.$skip = offset;
             }
-            if ((limit !== undefined) && 
+            if ((limit !== undefined) &&
             (limit !== null) && (limit > 0)) {
                 data.$limit = limit;
             }
@@ -186,13 +186,13 @@ export class DataManagerBase {
             });
         } // get_items
     get_one_item(item) {
-            if ((item === undefined) || 
+            if ((item === undefined) ||
             (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
                 });
             }
-            if ((item.collection_name === undefined) || 
+            if ((item.collection_name === undefined) ||
             (item.collection_name === null) ||
             (item.to_fetch_map === undefined)) {
                 return new Promise((resolve, reject) => {
@@ -272,7 +272,7 @@ export class DataManagerBase {
             });
         } // insert_item
     update_item(item) {
-            if ((item === undefined) || 
+            if ((item === undefined) ||
             (item === null)) {
                 return new Promise((resolve, reject) => {
                     reject(new Error('invalid input parameters.'));
@@ -390,7 +390,7 @@ export class DataManagerBase {
                 resolve([]);
             });
          }
-       let self = this;    
+       let self = this;
        return new Promise((resolve,reject) =>{
            let xp = [];
            for (let j = 0; j < nn; ++j){
