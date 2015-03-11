@@ -12,12 +12,12 @@ export class App {
       config.map([
         { route: ['','welcome'],  moduleId: 'welcome',      nav: true, title:'Welcome' },
         { route: 'flickr',        moduleId: 'flickr',       nav: true },
-        { route: 'etuds',        moduleId: 'welcome',       nav: false },
-        { route: 'profs',        moduleId: 'welcome',       nav: false },
-        { route: 'etuds',        moduleId: 'welcome',       nav: false },
-        { route: 'unites',        moduleId: 'welcome',       nav: false },
-        { route: 'annees',        moduleId: 'welcome',       nav: false },
-        { route: 'groupes',       moduleId: 'groupes',       nav: false },
+        { route: 'etuds/:id',        moduleId: 'welcome',       nav: false },
+        { route: 'profs/:id',        moduleId: 'welcome',       nav: false },
+        { route: 'etuds/:id',        moduleId: 'welcome',       nav: false },
+        { route: 'unites/:id',        moduleId: 'welcome',       nav: false },
+        { route: 'annees/:id',        moduleId: 'welcome',       nav: false },
+        { route: 'groupes/:id',       moduleId: 'groupes',       nav: false },
         { route: 'departements',  moduleId: 'departements', nav: true, title:'Départements' },
         { route: 'child-router',  moduleId: 'child-router', nav: true, title:'Child Router' }
       ]);

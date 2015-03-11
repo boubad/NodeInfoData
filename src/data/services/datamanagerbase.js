@@ -169,7 +169,7 @@ export class DataManagerBase {
             let data = {};
             item.to_fetch_map(data);
             if ((offset !== undefined) &&
-            (offset !== null) && (offset >= 0)) {
+            (offset !== null) && (offset > 0)) {
                 data.$skip = offset;
             }
             if ((limit !== undefined) &&

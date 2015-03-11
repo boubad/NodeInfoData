@@ -7,11 +7,13 @@ import {
   UIHelpers
 }
 from './uihelpers';
+import {Departement} from '../domain/departement';
 //
 export class PagedViewModel extends ViewModelBase {
 
   constructor(dataService, userInfo, model) {
       super(dataService,userInfo);
+      this._dep = new Departement();
       this._add_mode = false;
       this.item_model = model;
       this._internal_items_page = 16;
@@ -22,6 +24,18 @@ export class PagedViewModel extends ViewModelBase {
       this._current_item = null;
       this._old_item = null;
     } // constructor
+  get departement(){
+    return (this._dep != null) ? this._dep : new Departement();
+  }
+  set departement(d){
+    this._dep = d;
+  }
+  get departementid(){
+    return this.departement.id;
+  }
+  get has_departmentid(){
+    return (this.departementid !== null);
+  }
     //
   get_total_items_count() {
       return this.dataService.get_items_count(this.item_model);
@@ -49,12 +63,12 @@ export class PagedViewModel extends ViewModelBase {
       this._current_item = (v !== undefined) ? v : null;
     }
     get hasCurrent(){
-      return ((this.current != null) && (this.current.has_id));
+      return ((this.current !== null) && (this.current.has_id));
     }
     //
 
   get canAdd() {
-    return (this._add_mode == false);
+    return (this._add_mode === false);
   }
   cancel() {
     this.current = this._old_item;
@@ -143,14 +157,14 @@ refresh() {
       self.status = s;
       let pSel = null;
       if (self.items.length > 0) {
-        if ((old === undefined) || (old == null)) {
+        if ((old === undefined) || (old === null)) {
           pSel = self.items[0];
         } else {
           if ((old.id !== undefined) && (old.id !== null)) {
             let id = old.id;
             for (let i = 0; i < self.items.length; ++i) {
               let x = self.items[i];
-              if ((x !== undefined) && (x !== null) && (x.id != undefined) &&
+              if ((x !== undefined) && (x !== null) && (x.id !== undefined) &&
                 (x.id == id)) {
                 pSel = x;
                 break;
@@ -219,7 +233,7 @@ refreshAll() {
       let nc = this._internal_items_page;
       let np = Math.floor(total / nc);
       if (total > 0) {
-        if ((total % nc) != 0) {
+        if ((total % nc) !== 0) {
           ++np;
         }
       }
