@@ -1,5 +1,7 @@
 // userinfo.js
 //
+import {UserInfoBase} from './viewmodel/userinfobase';
+//
 import {
     Departement
 }
@@ -48,25 +50,16 @@ import {
 from 'aurelia-event-aggregator';
 //
 //
-export class UserInfo {
+export class UserInfo extends UserInfoBase {
     //
     static inject() {
             return [EventAggregator];
         }
         //
     constructor(eventAggregator) {
+           super();
             let self = this;
             this.eventAggregator = eventAggregator;
-            this.departement = null;
-            this.annee = null;
-            this.semestre = null;
-            this.person = null;
-            this.unite = null;
-            this.matiere = null;
-            this.groupe = null;
-            this.enseignant = null;
-            this.profaffectation = null;
-            this.groupeevent = null;
             //
             this.eventAggregator.subscribe(Departement, message => {
                 self.departement = message;
@@ -82,9 +75,9 @@ export class UserInfo {
             });
             this.eventAggregator.subscribe(Annee, message => {
                 self.annee = message;
-                this.semestre = null;
-                this.groupe = null;
-                this.enseignant = null;
+                self.semestre = null;
+                self.groupe = null;
+                self.enseignant = null;
             });
             this.eventAggregator.subscribe(Semestre, message => {
                 self.semestre = message;
@@ -132,20 +125,8 @@ export class UserInfo {
                 self.groupeevent = null;
             });
             this.eventAggregator.subscribe(GroupeEvent, message => {
-                self.groupeEvent = message;
+                self.groupeevent = message;
             });
         } // constructor
 
-    disconnect() {
-            this.departement = null;
-            this.annee = null;
-            this.semestre = null;
-            this.person = null;
-            this.unite = null;
-            this.matiere = null;
-            this.groupe = null;
-            this.enseignant = null;
-            this.profaffectation = null;
-            this.groupeevent = null;
-        } // disconnect
 } // class UserInfo

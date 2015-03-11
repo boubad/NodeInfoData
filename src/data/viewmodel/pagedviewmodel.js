@@ -5,8 +5,8 @@ import {
 from './viewmodelbase';
 //
 export class PagedViewModel extends ViewModelBase {
-    constructor(dataService, model) {
-            super(dataService);
+    constructor(dataService, userInfo,model) {
+            super(dataService, userInfo);
             this.item_model = model;
             this._internal_items_page = 16;
             this.itemsCount = 0;
@@ -39,6 +39,10 @@ export class PagedViewModel extends ViewModelBase {
         remove() {
             let item = this.current;
             if ((item !== undefined) && (item !== null) && item.has_id) {
+                let message = 'Voulez-vous vraiment supprimer ' + item.toString();
+                if (!this.ask_question(message)){
+                    return;
+                }
                 let self = this;
                 this.error = null;
                 this.remove_item(item).then(function (res) {

@@ -1,10 +1,12 @@
 //viewmodelbase.js
 //
 import {DataService} from '../services/dataservice';
+import {UserInfoBase} from './userinfobase';
 //
 export class ViewModelBase {
-    constructor(dataService) {
+    constructor(dataService,userInfo) {
             this.dataService = dataService;
+            this.userInfo = userInfo;
             this.title = null;
             this._error = null;
             this._info = null;
@@ -33,17 +35,21 @@ export class ViewModelBase {
                       (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
     }
     get hasInfo() {
-            return (this.info != null);
+            return (this.info !== null);
         }
         //
     get status() {
         return this._status;
     }
     set status(s) {
-        this._status = ((s != undefined) && (s != null) && (s.trim().length > 0)) ? s.trim() : null;
+        this._status = ((s !== undefined) && (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
     }
     get hasStatus() {
-            return (this.status != null);
+            return (this.status !== null);
+        }
+        //
+        ask_question(message){
+            return true;
         }
         //
     _internal_set_error(err){

@@ -28,7 +28,7 @@ export class Departements extends PagedViewModel {
         return [DataService, EventAggregator, UserInfo];
     }
     constructor(dataService, eventAggregator, userInfo) {
-            super(dataService, new Departement());
+            super(dataService, userInfo, new Departement());
             this.eventAggregator = eventAggregator;
             this.userinfo = userInfo;
             this.title = 'Départements';
