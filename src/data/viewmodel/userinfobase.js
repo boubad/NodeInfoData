@@ -77,4 +77,22 @@ export class UserInfoBase {
     return (this.groupeevent !== undefined) && (this.groupeevent !== null) &&
       (this.groupeevent.id !== undefined) && (this.groupeevent.id !== null);
   }
+  get departementid(){
+    return (this.has_departement) ? this.departement.id : null;
+  }
+  get uniteid(){
+    return (this.has_unite) ? this.unite.id : null;
+  }
+  get anneeid(){
+    return (this.has_annee) ? this.annee.id : null;
+  }
+  get semestreid(){
+    return (this.has_semestre) ? this.semestre.id : null;
+  }
+  get groupeid(){
+    return (this.has_groupe) ? this.groupe.id : null;
+  }
+  get matiereid(){
+    return (this.has_matiere) ? this.matiere.id : null;
+  }
 } // class UserInfoBase

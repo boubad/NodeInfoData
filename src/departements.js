@@ -24,14 +24,45 @@ export class Departements extends PagedSigleNameViewModel {
   constructor(dataService, userInfo) {
       super(dataService, userInfo, new Departement());
       this.title = 'Départements';
+      this.menu = [];
     } // constructor
   get current() {
       return super.current;
     } //
   set current(v) {
     super.current = v;
+    let mm = [];
+    mm.push({
+      title: 'Etudiants',
+      refer: '#etuds'
+    });
+    mm.push({
+      title: 'Années',
+      refer: '#annees'
+    });
+    mm.push({
+      title: 'Enseignants',
+      refer: '#profs'
+    });
+    mm.push({
+      title: 'Groupes',
+      refer: '#groupes'
+    });
+    mm.push({
+      title: 'Unités',
+      refer: '#unites'
+    });
+    this.menu = mm;
     if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
       this.userInfo.departement = v;
+      this.userInfo.annee = null;
+      this.userInfo.semestre = null;
+      this.userInfo.unite = null;
+      this.userInfo.matiere = null;
+      this.userInfo.groupe = null;
+      this.userInfo.enseignant = null;
+      this.userInfo.profaffectation = null;
+      this.groupeevent = null;
     }
   }
   addNew() {

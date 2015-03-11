@@ -47,6 +47,9 @@ export class PagedViewModel extends ViewModelBase {
   set current(v) {
       this._current_item = (v !== undefined) ? v : null;
     }
+    get hasCurrent(){
+      return ((this.current != null) && (this.current.has_id));
+    }
     //
   get canAdd() {
     return (this._add_mode == false);
@@ -99,6 +102,7 @@ save() {
     this.error = null;
     let bOld = data.has_id;
     this.maintains_item(data).then((p) => {
+      self._add_mode = false;
       if (bOld) {
         self.refresh();
       } else {
@@ -122,6 +126,7 @@ refresh() {
     }
     let old = this.current;
     return this.get_items(start, count).then((pp) => {
+      self._add_mode = false;
       let res = [];
       if ((pp !== undefined) && (pp !== null) && (pp.length > 0)) {
         res = pp;
