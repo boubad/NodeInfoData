@@ -26,9 +26,9 @@ export class PagedViewModel extends ViewModelBase {
       return this.dataService.get_items_count(this.item_model);
     } // get_total_items_count
   get_items(offset, count) {
-      return this.dataService.getItems(this.item_model, offset, count);
+      return this.dataService.get_items(this.item_model, offset, count);
     } // get_items
-  maintains_intem(item) {
+  maintains_item(item) {
     return this.dataService.maintains_item(item);
   }
   remove_item(item) {
@@ -92,7 +92,7 @@ save() {
     if ((data === undefined) || (data === null)) {
       return;
     }
-    if (!item.is_storeable) {
+    if (!data.is_storeable) {
       return;
     }
     let self = this;
@@ -134,7 +134,7 @@ refresh() {
         s = 'page ' + nx + ' sur ' + nt;
       }
       self.status = s;
-      let pSet = null;
+      let pSel = null;
       if (self.items.length > 0) {
         if ((old === undefined) || (old == null)) {
           pSel = self.items[0];
@@ -164,23 +164,7 @@ refresh() {
       return false;
     });
   } // refresh
-_internal_pages_setup() {
-    let nt = this.itemsCount;
-    let total = ((nt !== undefined) && (nt !== null) && (nt > 0)) ? nt : 0;
-    if (this._internal_items_page < 1) {
-      this._internal_items_page = 16;
-    }
-    let nc = this._internal_items_page;
-    let np = Math.floor(total / nc);
-    if (total > 0) {
-      if ((total % nc) != 0) {
-        ++np;
-      }
-    }
-    this._internal_current_page = 0;
-    this.pagesCount = np;
-    return this.refresh();
-  } // _iternal_pages_setup
+
 
 get currentPage() {
   return (this._internal_current_page !== undefined) ?
@@ -218,6 +202,28 @@ refreshAll() {
       return false;
     });
   } // refreshAll
+  _internal_pages_setup() {
+      let nt = this.itemsCount;
+      let total = ((nt !== undefined) && (nt !== null) && (nt > 0)) ? nt : 0;
+      if (this._internal_items_page < 1) {
+        this._internal_items_page = 16;
+      }
+      let nc = this._internal_items_page;
+      let np = Math.floor(total / nc);
+      if (total > 0) {
+        if ((total % nc) != 0) {
+          ++np;
+        }
+      }
+      this._internal_current_page = 0;
+      this.pagesCount = np;
+      if (this.pagesCount > 0){
+        return this.refresh();
+      } else {
+        this.items = [];
+        return true;
+      }
+    } // _iternal_pages_setup
 get hasItems() {
   return (this.itemsCount > 0);
 }

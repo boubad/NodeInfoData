@@ -1,7 +1,7 @@
 // uihelpers.js
 export class UIHelpers {
   static confirm(message) {
-    return window.alert(message);
+    return window.confirm(message);
   }
   static alert(message) {
     window.alert(message);
