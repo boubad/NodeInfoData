@@ -32,26 +32,30 @@ export class Departements extends PagedSigleNameViewModel {
   set current(v) {
     super.current = v;
     let mm = [];
-    mm.push({
+    if ((v !== undefined) && (v !== null) && v.has_id){
+      let id = v.id;
+      mm.push({
       title: 'Etudiants',
-      refer: '#etuds'
+      refer: '#etuds/' + id
     });
     mm.push({
       title: 'Années',
-      refer: '#annees'
+      refer: '#annees/' +id
     });
     mm.push({
       title: 'Enseignants',
-      refer: '#profs'
+      refer: '#profs/' + id
     });
     mm.push({
       title: 'Groupes',
-      refer: '#groupes'
+      refer: '#groupes/' +id
     });
     mm.push({
       title: 'Unités',
-      refer: '#unites'
+      refer: '#unites/' + id
     });
+    }
+    
     this.menu = mm;
     if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
       this.userInfo.departement = v;

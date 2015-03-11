@@ -11,7 +11,7 @@ import {
 }
 from './data/services/dataservice';
 import {
-  PagedSigleNameViewModel
+  ViewModelBase
 }
 from './data/viewmodel/viewmodelbase';
 import {
