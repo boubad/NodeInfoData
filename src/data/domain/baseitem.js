@@ -74,6 +74,9 @@ export class BaseItem {
                 if (this.has_rev) {
                     oMap._rev = this.rev;
                 }
+                if ((oMap.type !== undefined) && (oMap.type !== null)) {
+                  oMap.type = null;
+                }
             }
         } // to_fetch_map
     toString() {

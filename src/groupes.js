@@ -70,4 +70,4 @@ export class Groupes extends PagedSigleNameViewModel {
         return self.refreshAll();
       });
     } // activate
-} // class DepartementViewModel
+} // class Groupes

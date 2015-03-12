@@ -176,7 +176,10 @@ refresh() {
           }
         }
       }
-      this.current = pSel;
+      self.current = pSel;
+      if (self.items.length < 1){
+        self.addNew();
+      }
       return true;
     }).catch((err) => {
       self._internal_set_error(err);
@@ -240,6 +243,7 @@ refreshAll() {
         return this.refresh();
       } else {
         this.items = [];
+        this.addNew();
         return true;
       }
     } // _iternal_pages_setup

@@ -55,7 +55,6 @@ export class Departements extends PagedSigleNameViewModel {
       refer: '#unites/' + id
     });
     }
-    
     this.menu = mm;
     if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
       this.userInfo.departement = v;

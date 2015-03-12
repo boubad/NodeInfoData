@@ -42,7 +42,28 @@
         <form role="form">
           <div class="form-group">
             <label for="sigle">Abbreviation:</label>
-            <input type="text" class="form-control" id="sigle" value.bind="sigle" placeholder="Abbreviation">
+            <input type="text" class="form-control" id="sigle" required="true"
+            value.bind="sigle" placeholder="Abbreviation">
+          </div>
+          <div class="form-group">
+            <label for="mat_module">Module:</label>
+            <input type="text" class="form-control" id="mat_module" value.bind="mat_module" 
+            placeholder="MODULE">
+          </div>
+          <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input type="text" class="form-control" id="genre" value.bind="genre"
+            placeholder="GENRE">
+          </div>
+          <div class="form-group">
+            <label for="coef">Coefficient:</label>
+            <input type="number" class="form-control" id="coef" value.bind="coefficient"
+            placeholder="COEFFICIENT">
+          </div>
+          <div class="form-group">
+            <label for="ecs">ECS:</label>
+            <input type="number" class="form-control" id="ecs" value.bind="ecs"
+            placeholder="ECS">
           </div>
           <div class="form-group">
             <label for="nom">Nom complet:</label>
