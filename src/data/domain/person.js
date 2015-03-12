@@ -29,8 +29,8 @@ export class Person extends DescriptionItem {
                 if (oMap.departementids !== undefined) {
                     this.departementids = oMap.departementids;
                 } //
-                if (oMap.infoid !== undefined){
-                    this.infoid = oMap.infoid;
+                if (oMap.infoids !== undefined){
+                    this.infoids = oMap.infoids;
                 }
                 if (oMap.roles !== undefined) {
                     this.roles = oMap.roles;
@@ -78,18 +78,17 @@ export class Person extends DescriptionItem {
             return (this.password == v);
         } // check_password
     get departementids() {
-            return ((this._deps !== undefined) && 
-            (this._deps !== null)) ? this._deps : null;
+            return ((this._deps !== undefined) &&
+            (this._deps !== null)) ? this._deps : new Set();
         } // getDepartementids
     set departementids(s) {
-        this._deps = null;
+        this._deps = new Set();
         if ((s !== undefined) && (s !== null) && (s.length > 0)) {
-            this._deps = new Set();
             let n = s.length;
             for (let i = 0; i < n; ++i) {
                 let x = s[i];
-                if ((x !== null) && (x.trim().length > 0)) {
-                    this._deps.add(x.trim());
+                if ((x !== null) && (x.toString().trim().length > 0)) {
+                    this._deps.add(x;
                 } // x
             } // i
         }
@@ -98,23 +97,22 @@ export class Person extends DescriptionItem {
         return (this.departementids !== null);
     }
     add_departementid(id) {
-            if ((id !== undefined) && 
-            (id !== null) && (id.trim().length > 0)) {
+            if ((id !== undefined) &&
+            (id !== null) && (id.toString().trim().length > 0)) {
                 if ((this._deps === undefined) || (this._deps === null)) {
                     this._deps = new Set();
                 }
-                this._deps.add(id.trim());
+                this._deps.add(id);
             }
         } // add_departementid
         //
     get roles() {
-        return ((this._roles !== undefined) && 
-        (this._roles !== null)) ? this._roles : null;
+        return ((this._roles !== undefined) &&
+        (this._roles !== null)) ? this._roles : [];
     }
     set roles(s) {
-        this._roles = null;
+        this._roles = new Set();
         if ((s !== undefined) && (s !== null) && (s.length > 0)) {
-            this._roles = new Set();
             let n = s.length;
             for (let i = 0; i < n; ++i) {
                 let x = s[i];
@@ -128,7 +126,7 @@ export class Person extends DescriptionItem {
         return (this.roles !== null);
     }
     add_role(id) {
-            if ((id !== undefined) && (id !== null) && 
+            if ((id !== undefined) && (id !== null) &&
             (id.trim().length > 0)) {
                 if ((this._roles === undefined) || (this._roles === null)) {
                     this._roles = new Set();
@@ -140,19 +138,34 @@ export class Person extends DescriptionItem {
     get collection_name() {
         return "persons";
     }
-    get infoid(){
-        return (this._infoid !== undefined) ? this._infoid : null;
+    get infoids() {
+        return ((this._infoids !== undefined) &&
+        (this._infoids !== null)) ? this._infoids : [];
     }
-    set infoid(s){
-        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)){
-            this._infoid = s.trim();
-        } else {
-            this._infoid = null;
+    set infoids(s) {
+        this._infoids = new Set();
+        if ((s !== undefined) && (s !== null) && (s.length > 0)) {
+            let n = s.length;
+            for (let i = 0; i < n; ++i) {
+                let x = s[i];
+                if ((x !== null) && (x.toString().trim().length > 0)) {
+                    this._infoids.add(x;
+                } // x
+            } // i
         }
     }
-    get has_infoid(){
-        return (this.infoid !== null);
+    get has_infoids() {
+        return (this.infoids !== null);
     }
+    add_infoid(id) {
+            if ((id !== undefined) && (id !== null) &&
+            (id.toString().trim().length > 0)) {
+                if ((this._infoids === undefined) || (this._infoids === null)) {
+                    this._infoids = new Set();
+                }
+                this._infoids.add(id);
+            }
+        } // add_departementi
     get username() {
         return (this._user !== undefined) ? this._user : null;
     }
@@ -189,7 +202,7 @@ export class Person extends DescriptionItem {
             let ss = s.trim();
             let n = ss.length;
             if (n > 1) {
-                this.first = 
+                this.first =
                 ss.substr(0, 1).toUpperCase() + ss.substr(1, n - 1).toLowerCase();
             } else {
                 this._first = ss.toUpperCase();
@@ -231,7 +244,7 @@ export class Person extends DescriptionItem {
     get has_password() {
             return(this.password !== null);
         }
-        //  
+        //
     get email() {
         return (this._email !== undefined) ? this._email : null;
     }
@@ -246,7 +259,7 @@ export class Person extends DescriptionItem {
             return (this.email !== null);
         }
         //
-        //  
+        //
     get phone() {
         return (this._phone !== undefined) ? this._phone : null;
     }
@@ -282,8 +295,14 @@ export class Person extends DescriptionItem {
                 if (this.has_phone) {
                     oMap.phone = this.phone;
                 }
-                if (this.has_infoid){
-                    oMap.infoid = this.infoid;
+                if (this.has_infoids){
+                  let r = [];
+                  for (let id of this.infoids) {
+                      r.push(id);
+                  } // id
+                  if (r.length > 0) {
+                      oMap.infoids = r;
+                  }
                 }
                 if (this.has_departementids) {
                     let r = [];

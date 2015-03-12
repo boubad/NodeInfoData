@@ -107,21 +107,35 @@ export class DataService extends DataManagerBase {
       return this.get_items(model);
     } // get_annee_semestres
     //
+    find_person_by_username(suser) {
+        let model = new Person({
+          username: suser
+        });
+        return this.get_one_item(model);
+      } // find_person_by_username
+      //
+    //
   find_person_by_username_password(suser, spass) {
-      let model = new Person({
-        username: suser
-      });
-      let self = this;
-      return this.get_one_item(model).then((r) => {
-        let vRet = null;
-        if ((r !== undefined) && (r !== null)) {
-          if (r.check_password(spass)) {
-            vRet = r;
-          }
-        } // r
-        return vRet;
-      });
+     return this.find_person_by_username(suser).then((p) =>{
+       if ((p != undefined) && (p !== null)){
+           if (p.check_password(spass)){
+             return p;
+           } else {
+             return null;
+           }
+       } else {
+         return null;
+       }
+     });
     } // find_person_by_username
+    maintains_person(p){
+      let self = this;
+      let model = new Person(p);
+      let suser = model.username;
+      return this.maintains_item(model).then((x)=>{
+        return self.find_person_by_username(suser);
+      });
+    }// maintains_person
     //
   get_departements_count(dep) {
       let model = new Departement(dep);

@@ -61,6 +61,10 @@ import {
 }
 from '../domain/personinfo';
 import {
+  EtudiantInfo
+}
+from '../domain/etudiantinfo';
+import {
   ProfAffectation
 }
 from '../domain/profaffectation';
@@ -125,7 +129,9 @@ export class DataManagerBase {
         return new Person(oMap);
       } else if (t == 'personinfo') {
         return new PersonInfo(oMap);
-      } else if (t == 'profaffectation') {
+      } else if (t == 'etudiantinfo') {
+        return new EtudiantInfo(oMap);
+      }else if (t == 'profaffectation') {
         return new ProfAffectation(oMap);
       } else if (t == 'semestre') {
         return new Semestre(oMap);
