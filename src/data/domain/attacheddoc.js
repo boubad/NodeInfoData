@@ -1,89 +1,87 @@
 //attacheddoc.tjs
 //
-import {DescriptionItem} from './descriptionitem';
+import {
+    DescriptionItem
+}
+from './descriptionitem';
 //
 export class AttachedDoc extends DescriptionItem {
-	constructor(oMap){
+    constructor(oMap) {
         super(oMap);
-        this.type = 'attacheddoc';
-		if ((oMap !== undefined) && (oMap !== null)){
-			if ((oMap.mimetype !== undefined) && (oMap.mimetype !== null)){
-				this.mimetype = oMap.mimetype;
-			}
-            if ((oMap.genre !== undefined) && (oMap.genre !== null)){
-				this.genre = oMap.genre;
-			}
-			if ((oMap.name !== undefined) && (oMap.name !== null)){
-				this.name = oMap.name;
-			}
-            if ((oMap.data !== undefined) && (oMap.data !== null)){
-				this.data = oMap.data;
-			}
-		}// oMap
-	}// constructor
-    get collection_name(){
+        if ((oMap !== undefined) && (oMap !== null)) {
+            if (oMap.mimetype !== undefined) {
+                this.mimetype = oMap.mimetype;
+            }
+            if (oMap.genre !== undefined) {
+                this.genre = oMap.genre;
+            }
+            if (oMap.name !== undefined) {
+                this.name = oMap.name;
+            }
+            if (oMap.data !== undefined) {
+                this.data = oMap.data;
+            }
+        } // oMap
+    } // constructor
+    get type() {
+        return 'attacheddoc';
+    }
+    get collection_name() {
         return 'attacheddocs';
     }
-    //
-     get mimetype(){
+    get mimetype() {
         return (this._mime !== undefined) ? this._mime : null;
-    }// 
-    set mimetype(s){
-        this._mime = ((s !== undefined) && (s !== null) &&
-        (s.trim().length > 0)) ? s.trim() : null;
-    }// 
-	get has_mimetype() {
-		return (this.mimetype !== null);
-	}
+    } // 
+    set mimetype(s) {
+        this._mime = ((s !== undefined) && (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
+    } // 
+    get has_mimetype() {
+        return (this.mimetype !== null);
+    }
     //
-     get genre() {
+    get genre() {
         return (this._genre !== undefined) ? this._genre : null;
-    }// 
-    set genre(s){
-        this._genre = ((s !== undefined) &&
-        (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
-    }// 
-	get has_genre() {
-		return (this.genre !== null);
-	}
-	get name() {
+    } // 
+    set genre(s) {
+        this._genre = ((s !== undefined) && (s !== null) && (s.trim().length > 0)) ? s.trim().toLowerCase() : null;
+    } // 
+    get has_genre() {
+        return (this.genre !== null);
+    }
+    get name() {
         return (this._name !== undefined) ? this._name : null;
-    }// name
-    set name(s){
-        this._name = ((s !== undefined) &&
-        (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
-    }// name
-	get has_name() {
-		return (this.name !== null);
-	}
-     get data() {
+    } // name
+    set name(s) {
+        this._name = ((s !== undefined) && (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
+    } // name
+    get has_name() {
+        return (this.name !== null);
+    }
+    get data() {
         return (this._data !== undefined) ? this._data : null;
-    }// 
-    set data(s){
+    } // 
+    set data(s) {
         this._data = ((s !== undefined) && (s !== null)) ? s : null;
-    }// 
-	get has_data() {
-		return (this.data !== null);
-	}
-	get is_storeable()  {
-		return (this.has_data && this.has_genre && 
-		this.has_mimetype && this.has_name);
-	}
-	to_insert_map(oMap ) {
+    } // 
+    get has_data() {
+        return (this.data !== null);
+    }
+    get is_storeable() {
+        return (super.is_storeable && this.has_data && this.has_genre && this.has_mimetype && this.has_name);
+    }
+    to_insert_map(oMap) {
         super.to_insert_map(oMap);
-		if ((oMap !== undefined) && (oMap !== null)){
-			if (this.has_mimetype){
-				oMap.mimetype = this.mimetype;
-			}
-            if (this.has_genre){
-				oMap.genre = this.genre;
-			}
-			if (this.has_name){
-				oMap.name = this.name;
-			}
-            if (this.has_data){
-				oMap.data = this.data;
-			}
-		}
-	}// to_insert_map
-}// class AttachedDoc
+        if (this.has_mimetype) {
+            oMap.mimetype = this.mimetype;
+        }
+        if (this.has_genre) {
+            oMap.genre = this.genre;
+        }
+        if (this.has_name) {
+            oMap.name = this.name;
+        }
+        if (this.has_data) {
+            oMap.data = this.data;
+        }
+    } // to_insert_map
+} // class AttachedDoc

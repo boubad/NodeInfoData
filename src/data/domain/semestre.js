@@ -4,13 +4,15 @@ import { IntervalItem } from './intervalitem';
 export class Semestre extends IntervalItem {
     constructor(oMap) {
         super(oMap);
-        this.type = 'semestre';
         if ((oMap !== undefined) && (oMap !== null)){
             if (oMap.anneeid !== undefined){
                 this.anneeid = oMap.anneeid;
             }
         }// oMap
     }// constructor
+    get type(){
+        return 'semestre';
+    }
     get collection_name() {
         return 'semestres';
     }
@@ -18,8 +20,8 @@ export class Semestre extends IntervalItem {
         return (this._anneeid !== undefined) ? this._anneeid : null;
     }
     set anneeid(s){
-        if ((s !== undefined) && (s !== null) && (s.trim().length > 0)){
-            this._anneeid = s.trim();
+        if ((s !== undefined) && (s !== null) && (s.toString().trim().length > 0)){
+            this._anneeid = s;
         } else {
             this._anneeid = null;
         }

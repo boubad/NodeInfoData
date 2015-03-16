@@ -1,11 +1,11 @@
-//departementchild.js
+//departementitem.js
 //
 import {
-    SigleNameItem
+    DescriptionItem
 }
-from './siglenameitem';
+from './descriptionitem';
 //
-export class DepartementChildItem extends SigleNameItem {
+export class DepartementItem extends DescriptionItem {
     constructor(oMap) {
         super(oMap);
         if ((oMap !== undefined) && (oMap !== null)) {

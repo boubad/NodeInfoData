@@ -1,5 +1,8 @@
 // intervalitem.js
-import { DepartementChildItem } from './departementchild';
+import {
+    DepartementChildItem
+}
+from './departementchild';
 //
 export class IntervalItem extends DepartementChildItem {
     constructor(oMap) {
@@ -32,17 +35,17 @@ export class IntervalItem extends DepartementChildItem {
         return (this.endDate !== null);
     }
     get is_storeable() {
-        return (super.is_storeable && this.has_startDate && this.has_endDate);
+        return (super.is_storeable && this.has_startDate &&
+        this.has_endDate && 
+        (this.startDate.getTime() <= this.endDate.getTime()));
     }
     to_insert_map(oMap) {
-            super.to_insert_map(oMap);
-            if ((oMap !== undefined) && (oMap !== null)) {
-                if (this.has_startDate) {
-                    oMap.startDate = this.startDate;
-                }
-                if (this.has_endDate) {
-                    oMap.endDate = this.endDate;
-                }
-            }
-        } // to_insert_map
+        super.to_insert_map(oMap);
+        if (this.has_startDate) {
+            oMap.startDate = this.startDate;
+        }
+        if (this.has_endDate) {
+            oMap.endDate = this.endDate;
+        }
+    } // to_insert_map
 } // class IntervalItem
