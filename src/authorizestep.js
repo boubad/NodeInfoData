@@ -1,17 +1,12 @@
 // authorizestep.js
-//
-import {
-  UserInfo
-}
-from './userinfo';
+
 import {Redirect} from 'aurelia-router';
 //
 export class AuthorizeStep {
   static inject() {
-    return [UserInfo];
+    return [];
   }
-  constructor(userInfo) {
-    this.userInfo = userInfo;
+  constructor() {
   }
 
   run(routingContext, next) {
@@ -19,10 +14,12 @@ export class AuthorizeStep {
     // The reason for using `nextInstructions` is because
     // this includes child routes.
     if (routingContext.nextInstructions.some(i => i.config.auth)) {
-      let isLoggedIn = false;
+      let isLoggedIn = true;
+      /*
       if ((this.userInfo !== undefined) && (this.userInfo !== null)) {
         isLoggedIn = this.userInfo.is_connected;
       }
+      */
       if (!isLoggedIn) {
         return next.cancel(new Redirect('login'));
       }

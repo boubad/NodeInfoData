@@ -1,4 +1,4 @@
-// etudiantinfo.js
+// etudperson.js
 import {
     Person
 }
@@ -160,4 +160,4 @@ export class EtudPerson extends Person {
             oMap.etudesSuperieures = this.etudesSuperieures;
         }
     } // to_insert_map
-} // class Etudiantinfo
+} // class EtudPerson

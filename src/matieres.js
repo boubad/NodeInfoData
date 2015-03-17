@@ -33,6 +33,7 @@ export class Matieres extends PagedSigleNameViewModel {
       this.menu = [];
       this._coef = null;
       this._ecs = null;
+      this.current = new Matiere();
     } // constructor
   get genre() {
     return ((this.current !== undefined) && (this !== null)) ? this.current.genre : null;
@@ -43,11 +44,11 @@ export class Matieres extends PagedSigleNameViewModel {
     }
   }
   get mat_module() {
-    return ((this.current !== undefined) && (this !== null)) ? this.current.module : null;
+    return ((this.current !== undefined) && (this !== null)) ? this.current.mat_module : null;
   }
   set mat_module(s) {
     if ((this.current !== undefined) && (this !== null)) {
-      this.current.module = s;
+      this.current.mat_module = s;
     }
   }
   get coefficient() {

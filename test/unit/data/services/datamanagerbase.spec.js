@@ -18,7 +18,6 @@ import {GroupeEvent} from '../../../../src/data/domain/groupeevent';
 import {Matiere} from '../../../../src/data/domain/matiere';
 import {Operator} from '../../../../src/data/domain/operator';
 import {Person} from '../../../../src/data/domain/person';
-import {PersonInfo} from '../../../../src/data/domain/personinfo';
 import {ProfAffectation} from '../../../../src/data/domain/profaffectation';
 import {Semestre} from '../../../../src/data/domain/semestre';
 import {Unite} from '../../../../src/data/domain/unite';

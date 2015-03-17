@@ -15,8 +15,8 @@ export class Matiere extends DepartementChildItem {
                 if (oMap.genre !== undefined) {
                     this.genre = oMap.genre;
                 }
-                if (oMap.module !== undefined) {
-                    this.module = oMap.module;
+                if (oMap.mat_module !== undefined) {
+                    this.mat_module = oMap.mat_module;
                 }
                 if (oMap.coefficient !== undefined) {
                     this.coefficient = oMap.coefficient;
@@ -53,15 +53,15 @@ export class Matiere extends DepartementChildItem {
             return (this.coefficient !== null);
         }
         //
-    get module() {
+    get mat_module() {
         return (this._module !== undefined) ? this._module : null;
     }
-    set module(s) {
+    set mat_module(s) {
         this._module = ((s !== undefined) &&
             (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
     }
-    get has_module() {
-            return (this.module !== null);
+    get has_mat_module() {
+            return (this.mat_module !== null);
         }
         //
     get genre() {
@@ -97,8 +97,8 @@ export class Matiere extends DepartementChildItem {
                 if (this.has_genre) {
                     oMap.genre = this.genre;
                 }
-                if (this.has_module) {
-                    oMap.module = this.module;
+                if (this.has_mat_module) {
+                    oMap.mat_module = this.mat_module;
                 }
                 if (this.has_coefficient) {
                     oMap.coefficient = this.coefficient;

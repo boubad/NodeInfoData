@@ -12,18 +12,15 @@ import {
   PagedSigleNameViewModel
 }
 from './data/viewmodel/pagedsiglenameviewmodel';
-import {
-  UserInfo
-}
-from './userinfo';
+
 //
 
 export class Departements extends PagedSigleNameViewModel {
   static inject() {
-    return [DataService, UserInfo];
+    return [DataService];
   }
-  constructor(dataService, userInfo) {
-      super(dataService, userInfo, new Departement());
+  constructor(dataService) {
+      super(dataService, new Departement());
       this.title = 'Départements';
       this.menu = [];
     } // constructor
@@ -57,18 +54,6 @@ export class Departements extends PagedSigleNameViewModel {
     });
     }
     this.menu = mm;
-    if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
-      this.userInfo.departement = v;
-      this.userInfo.annee = null;
-      this.userInfo.semestre = null;
-      this.userInfo.unite = null;
-      this.userInfo.matiere = null;
-      this.userInfo.groupe = null;
-      this.userInfo.enseignant = null;
-      this.userInfo.profaffectation = null;
-      this.groupeevent = null;
-
-    }
   }
   addNew() {
       super.addNew();

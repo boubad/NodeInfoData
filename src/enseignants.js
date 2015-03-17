@@ -1,9 +1,10 @@
-// groupes.js
+//enseignants.js
 //
 import {
-  Groupe
+  Enseignant
 }
-from './data/domain/groupe';
+from './data/domain/enseignant';
+import {ProfPerson} from './data/domain/profperson';
 import {
   Departement
 }
@@ -13,47 +14,36 @@ import {
 }
 from './data/services/dataservice';
 import {
-  PagedSigleNameViewModel
+  PersonViewModel
 }
-from './data/viewmodel/pagedsiglenameviewmodel';
+from './data/viewmodel/personviewmodel';
 
-//
-export class Groupes extends PagedSigleNameViewModel {
+export class Enseignants extends PersonViewModel {
   static inject() {
     return [DataService];
   }
   constructor(dataService) {
-      super(dataService, new Groupe());
-      this.title = 'Groupes';
-      this.current = new Groupe();
+      super(dataService, new Enseignant(), new ProfPerson);
+      this.title = 'Enseignants';
       this.menu = [];
     } // constructor
-  get canAdd() {
-    return (super.canAdd && (this.departementid != null));
-  }
-  addNew() {
-      super.addNew();
-      this.current = new Groupe({
-        departementid: this.departementid
-      });
-    } // addNew
   activate(params, query, router) {
       let id = params.id;
-      this.item_model = new Groupe({
+      this.item_model = new Enseignant({
         departementid: id
       });
       this.departement = new Departement({
         _id: id
       });
-      var self = this;
+      let self = this;
       return this.dataService.find_item_by_id(this.departement).then((d) => {
         if ((d !== undefined) && (d !== null)) {
           self.departemnt = d;
           if (d != null) {
-            self.title = 'Groupes ' + d.name;
+            self.title = 'Enseignants ' + d.name;
           }
         }
         return self.refreshAll();
       });
     } // activate
-} // class Groupes
+} // class Enseignants

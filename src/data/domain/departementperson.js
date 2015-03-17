@@ -12,8 +12,17 @@ export class DepartementPerson extends DepartementItem {
             if (oMap.personid !== undefined) {
                 this.personid = oMap.personid;
             }
+            if (oMap.fullname !== undefined){
+              this.fullname = oMap.fullname;
+            }
         } // oMap
     } // constructor
+    get fullname(){
+      return (this._fullname !== undefined) ? this._fullname : null;
+    }
+    set fullname(s){
+      this._fullname = s;
+    }
     get personid() {
         return (this._personid !== undefined) ? this._personid : null;
     }
@@ -36,5 +45,10 @@ export class DepartementPerson extends DepartementItem {
         if (this.has_personid) {
             oMap.personid = this.personid;
         }
+        oMap.fullname = this.fullname;
     } // to_insert_map
+    to_fetch_map(oMap){
+      super.to_fetch_map(oMap);
+      oMap.fullname = null;
+    }
 } // class Etudiant
