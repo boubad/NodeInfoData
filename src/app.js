@@ -29,7 +29,7 @@ export class App {
         nav: false
       }, {
         route: 'profs/:id',
-        moduleId: 'welcome',
+        moduleId: 'enseignants',
         nav: false
       }, {
         route: 'etuds/:id',

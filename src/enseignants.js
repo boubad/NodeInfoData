@@ -14,18 +14,17 @@ import {
 }
 from './data/services/dataservice';
 import {
-  PersonViewModel
+  ProfViewModel
 }
-from './data/viewmodel/personviewmodel';
+from './data/viewmodel/profviewmodel';
 
-export class Enseignants extends PersonViewModel {
+export class Enseignants extends ProfViewModel {
   static inject() {
     return [DataService];
   }
   constructor(dataService) {
-      super(dataService, new Enseignant(), new ProfPerson);
+      super(dataService);
       this.title = 'Enseignants';
-      this.menu = [];
     } // constructor
   activate(params, query, router) {
       let id = params.id;

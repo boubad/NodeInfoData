@@ -103,7 +103,7 @@ export class PersonViewModel extends PagedViewModel {
     }
   }
   get canAdd() {
-    return (super.canAdd && this.departementid != null));
+    return (super.canAdd && this.departementid != null);
   }
   addNew() {
       super.addNew();

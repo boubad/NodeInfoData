@@ -12,6 +12,7 @@ export class ViewModelBase {
             this._error = null;
             this._info = null;
             this._status = null;
+            this.menu = [];
         } // constructor
     get hasTitle() {
         return ((this.title !== undefined) && (this.title !== null) && (this.title.trim().length > 0));
