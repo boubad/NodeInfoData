@@ -80,7 +80,6 @@ from '../domain/unite';
 export class DataManagerBase {
   constructor(http, baseurl) {
       let base = 'http://localhost:52999/api';
-      this._baseurl = 'http://localhost:52999/api';
       this.client = http;
       if ((baseurl !== undefined) && (baseurl !== null)) {
         base = baseurl;
@@ -103,39 +102,56 @@ export class DataManagerBase {
       t = t.trim().toLowerCase();
       if (t == 'administrator') {
         return new Administrator(oMap);
-      } else if (t == 'annee') {
+      }
+      else if (t == 'annee') {
         return new Annee(oMap);
-      } else if (t == 'attacheddoc') {
+      }
+      else if (t == 'attacheddoc') {
         return new AttachedDoc(oMap);
-      } else if (t == 'departement') {
+      }
+      else if (t == 'departement') {
         return new Departement(oMap);
-      } else if (t == 'enseignant') {
+      }
+      else if (t == 'enseignant') {
         return new Enseignant(oMap);
-      } else if (t == 'etudaffectation') {
+      }
+      else if (t == 'etudaffectation') {
         return new EtudAffectation(oMap);
-      } else if (t == 'etudevent') {
+      }
+      else if (t == 'etudevent') {
         return new EtudEvent(oMap);
-      } else if (t == 'etudiant') {
+      }
+      else if (t == 'etudiant') {
         return new Etudiant(oMap);
-      } else if (t == 'groupe') {
+      }
+      else if (t == 'groupe') {
         return new Groupe(oMap);
-      } else if (t == 'groupeevent') {
+      }
+      else if (t == 'groupeevent') {
         return new GroupeEvent(oMap);
-      } else if (t == 'matiere') {
+      }
+      else if (t == 'matiere') {
         return new Matiere(oMap);
-      } else if (t == 'operator') {
+      }
+      else if (t == 'operator') {
         return new Operator(oMap);
-      } else if (t == 'person') {
+      }
+      else if (t == 'person') {
         return new Person(oMap);
-      } else if (t == 'personinfo') {
+      }
+      else if (t == 'personinfo') {
         return new PersonInfo(oMap);
-      } else if (t == 'etudiantinfo') {
+      }
+      else if (t == 'etudiantinfo') {
         return new EtudiantInfo(oMap);
-      }else if (t == 'profaffectation') {
+      }
+      else if (t == 'profaffectation') {
         return new ProfAffectation(oMap);
-      } else if (t == 'semestre') {
+      }
+      else if (t == 'semestre') {
         return new Semestre(oMap);
-      } else if (t == 'unite') {
+      }
+      else if (t == 'unite') {
         return new Unite(oMap);
       }
       return null;
@@ -176,7 +192,8 @@ export class DataManagerBase {
             if (bFirst) {
               bFirst = false;
               sRet = sRet + '?';
-            } else {
+            }
+            else {
               sRet = sRet + '&';
             }
             sRet = sRet + key + '=' + encodeURIComponent(v);
@@ -198,9 +215,9 @@ export class DataManagerBase {
           nRet = rsp.content.count;
         }
         return nRet;
-      }).catch(() => {
+      }, () => {
         return -1;
-      })
+      });
     } // get_items_count
     //
   get_items(item, offset, limit) {
@@ -218,10 +235,11 @@ export class DataManagerBase {
       return this.client.get(url).then((rsp) => {
         if (rsp.isSuccess) {
           return this.convert_items(rsp.content);
-        } else {
+        }
+        else {
           return [];
         }
-      }).catch(() => {
+      }, () => {
         return [];
       });
     } // get_items
@@ -229,7 +247,8 @@ export class DataManagerBase {
       return this.get_items(item).then(dd => {
         if (dd.length > 0) {
           return dd[0];
-        } else {
+        }
+        else {
           return null;
         }
       });
@@ -249,7 +268,8 @@ export class DataManagerBase {
       return this.client.post(url, data).then((rsp) => {
         if (rsp.isSuccess) {
           return rsp.content;
-        } else {
+        }
+        else {
           throw new Error(rsp.statusText);
         }
       });
@@ -261,7 +281,8 @@ export class DataManagerBase {
       return this.client.put(url, data).then((rsp) => {
         if (rsp.isSuccess) {
           return rsp.content;
-        } else {
+        }
+        else {
           throw new Error(rsp.statusText);
         }
       });
@@ -271,7 +292,8 @@ export class DataManagerBase {
       return this.client.delete(url).then((rsp) => {
         if (rsp.isSuccess) {
           return rsp.content;
-        } else {
+        }
+        else {
           throw new Error(rsp.statusText);
         }
       });
@@ -284,57 +306,23 @@ export class DataManagerBase {
         return this.client.put(url, data).then((rsp) => {
           if (rsp.isSuccess) {
             return rsp.content;
-          } else {
+          }
+          else {
             throw new Error(rsp.statusText);
           }
         });
-      } else {
+      }
+      else {
         let url = this.form_url(item.collection_name);
         return this.client.post(url, data).then((rsp) => {
           if (rsp.isSuccess) {
             return rsp.content;
-          } else {
+          }
+          else {
             throw new Error(rsp.statusText);
           }
         });
       }
     } // maintains_item
-  get_items_array(collectionName, ids) {
-      let n = ids.length;
-      let xx = [];
-      for (let i = 0; i < n; ++i) {
-        let x = ids[i];
-        if ((x !== undefined) && (x !== null) && (x.trim().length > 0)) {
-          xx.push(x.trim());
-        }
-      } // i
-      let nn = xx.length;
-      if (nn < 1) {
-        return new Promise((resolve, reject) => {
-          resolve([]);
-        });
-      }
-      let self = this;
-      return new Promise((resolve, reject) => {
-        let xp = [];
-        for (let j = 0; j < nn; ++j) {
-          let url = self.form_url(collectionName, [xx[j]]);
-          xp.push(self.client.get(url));
-        } // j
-        let nx = xp.length;
-        let xr = [];
-        for (let k = 0; k < nx; ++k) {
-          (xp[k]).then((r) => {
-            xr.push(self.create_item(r));
-            if (k == (nx - 1)) {
-              resolve(xr);
-            }
-          }).catch(() => {
-            if (k == (nx - 1)) {
-              resolve(xr);
-            }
-          });
-        } // k
-      });
-    } // get_items_array
+
 } // class DataManagerBase

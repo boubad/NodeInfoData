@@ -1,43 +1,47 @@
 //semestre.js
-import { IntervalItem } from './intervalitem';
+import {
+    IntervalItem
+}
+from './intervalitem';
 //
 export class Semestre extends IntervalItem {
     constructor(oMap) {
-        super(oMap);
-        if ((oMap !== undefined) && (oMap !== null)){
-            if (oMap.anneeid !== undefined){
-                this.anneeid = oMap.anneeid;
-            }
-        }// oMap
-    }// constructor
-    get type(){
+            super(oMap);
+            if ((oMap !== undefined) && (oMap !== null)) {
+                if (oMap.anneeid !== undefined) {
+                    this.anneeid = oMap.anneeid;
+                }
+            } // oMap
+        } // constructor
+    get type() {
         return 'semestre';
     }
     get collection_name() {
         return 'semestres';
     }
-    get anneeid(){
+    get anneeid() {
         return (this._anneeid !== undefined) ? this._anneeid : null;
     }
-    set anneeid(s){
-        if ((s !== undefined) && (s !== null) && (s.toString().trim().length > 0)){
+    set anneeid(s) {
+        if ((s !== undefined) && (s !== null) && (s.toString().trim().length > 0)) {
             this._anneeid = s;
-        } else {
+        }
+        else {
             this._anneeid = null;
         }
     }
-    get has_anneeid(){
+    get has_anneeid() {
         return (this.anneeid !== null);
     }
-    get is_storeable(){
+    get is_storeable() {
         return (super.is_storeable && this.has_anneeid);
     }
-    to_insert_map(oMap){
-        super.to_insert_map(oMap);
-        if ((oMap !== undefined) && (oMap !== null)){
-            if (this.has_anneeid){
-                oMap.anneeid = this.anneeid;
+    to_insert_map(oMap) {
+            super.to_insert_map(oMap);
+            if ((oMap !== undefined) && (oMap !== null)) {
+                if (this.has_anneeid) {
+                    oMap.anneeid = this.anneeid;
+                }
             }
-        }
-    }// to_insert_map
+        } // to_insert_map
 } // class Annee

@@ -17,17 +17,14 @@ import {
   PagedSigleNameViewModel
 }
 from './data/viewmodel/pagedsiglenameviewmodel';
-import {
-  UserInfo
-}
-from './userinfo';
+
 //
 export class Annees extends PagedSigleNameViewModel {
   static inject() {
-    return [DataService, UserInfo];
+    return [DataService];
   }
-  constructor(dataService, userInfo) {
-      super(dataService, userInfo, new Annee());
+  constructor(dataService) {
+      super(dataService, new Annee());
       this.format = 'YYYY-MM-DD';
       this.title = 'Années';
       let d = moment().format(this.format);
@@ -66,12 +63,6 @@ export class Annees extends PagedSigleNameViewModel {
     } else {
       this.startDate = d;
       this.endDate = d;
-    }
-    if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
-      this.userInfo.annee = v;
-      this.userInfo.semestre = null;
-      this.userInfo.profaffectation = null;
-      this.userInfo.groupeevent = null;
     }
   }
   get canAdd() {
@@ -138,10 +129,8 @@ export class Annees extends PagedSigleNameViewModel {
       this.departement = new Departement({
         _id: id
       });
-      //this.refreshAll();
-      //return true;
       var self = this;
-      return this.dataService.find_departement_by_id(id).then((d) => {
+      return this.dataService.find_item_by_id(this.departement).then((d) => {
         if ((d !== undefined) && (d !== null)) {
           self.departemnt = d;
           if (d != null) {

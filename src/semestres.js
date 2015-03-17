@@ -21,23 +21,22 @@ import {
   PagedSigleNameViewModel
 }
 from './data/viewmodel/pagedsiglenameviewmodel';
-import {
-  UserInfo
-}
-from './userinfo';
+
 //
 export class Semestres extends PagedSigleNameViewModel {
   static inject() {
-    return [DataService, UserInfo];
+    return [DataService];
   }
-  constructor(dataService, userInfo) {
-      super(dataService, userInfo, new Semestre());
+  constructor(dataService) {
+      super(dataService, new Semestre());
       this.format = 'YYYY-MM-DD';
       this.title = 'Semestres';
       let d = moment().format(this.format);
       this.startDate = d;
       this.endDate = d;
+      this.departement = new Departement();
       this.annee = new Annee();
+      this.menu =[];
     } // constructor
   get anneeid() {
     return ((this.annee !== undefined) && (this.annee !== null)) ?
@@ -69,11 +68,6 @@ export class Semestres extends PagedSigleNameViewModel {
     } else {
       this.startDate = d;
       this.endDate = d;
-    }
-    if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
-      this.userInfo.semestre = v;
-      this.userInfo.profaffectation = null;
-      this.userInfo.groupeevent = null;
     }
   }
   get canAdd() {
@@ -146,18 +140,19 @@ export class Semestres extends PagedSigleNameViewModel {
       });
       var self = this;
       var service = this.dataService;
-      return service.find_annee_by_id(id).then((d) => {
+      return service.find_item_by_id(this.annee).then((d) => {
         if ((d !== undefined) && (d !== null)) {
           self.annee = d;
           if (d != null) {
             self.title = 'Semestres ' + d.name;
-            service.find_departement_by_id(d.departementid)
+            self.departement = new Departement({_id: d.departementid});
+            service.find_item_by_id(self.departement)
               .then((x) => {
                 self.departement = x;
+                return self.refreshAll();
               })
           }
         }
-        return self.refreshAll();
       });
     } // activate
 } // class Annees

@@ -16,30 +16,16 @@ import {
   PagedSigleNameViewModel
 }
 from './data/viewmodel/pagedsiglenameviewmodel';
-import {
-  UserInfo
-}
-from './userinfo';
+
 //
 export class Groupes extends PagedSigleNameViewModel {
   static inject() {
-    return [DataService, UserInfo];
+    return [DataService];
   }
-  constructor(dataService, userInfo) {
-      super(dataService, userInfo, new Groupe());
+  constructor(dataService) {
+      super(dataService, new Groupe());
       this.title = 'Groupes';
     } // constructor
-  get current() {
-      return super.current;
-    } //
-  set current(v) {
-    super.current = v;
-    if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
-      this.userInfo.groupe = v;
-      this.userInfo.profaffectation = null;
-      this.userInfo.groupeevent = null;
-    }
-  }
   get canAdd() {
     return (super.canAdd && (this.departementid != null));
   }
@@ -57,10 +43,8 @@ export class Groupes extends PagedSigleNameViewModel {
       this.departement = new Departement({
         _id: id
       });
-      //this.refreshAll();
-      //return true;
       var self = this;
-      return this.dataService.find_departement_by_id(id).then((d) => {
+      return this.dataService.find_item_by_id(this.departement).then((d) => {
         if ((d !== undefined) && (d !== null)) {
           self.departemnt = d;
           if (d != null) {

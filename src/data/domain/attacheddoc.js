@@ -67,7 +67,8 @@ export class AttachedDoc extends DescriptionItem {
         return (this.data !== null);
     }
     get is_storeable() {
-        return (super.is_storeable && this.has_data && this.has_genre && this.has_mimetype && this.has_name);
+        return (super.is_storeable && this.has_data && 
+        this.has_genre && this.has_mimetype && this.has_name);
     }
     to_insert_map(oMap) {
         super.to_insert_map(oMap);

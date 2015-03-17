@@ -20,65 +20,64 @@ import {
   PagedSigleNameViewModel
 }
 from './data/viewmodel/pagedsiglenameviewmodel';
-import {
-  UserInfo
-}
-from './userinfo';
 //
 export class Matieres extends PagedSigleNameViewModel {
   static inject() {
-    return [DataService, UserInfo];
+    return [DataService];
   }
-  constructor(dataService, userInfo) {
-      super(dataService, userInfo, new Matiere());
+  constructor(dataService) {
+      super(dataService, new Matiere());
       this.title = 'Matières';
       this.unite = new Unite();
+      this.departement = new Departement();
       this.menu = [];
       this._coef = null;
       this._ecs = null;
     } // constructor
-    get genre(){
-      return ((this.current !== undefined) && (this !== null)) ? this.current.genre : null;
+  get genre() {
+    return ((this.current !== undefined) && (this !== null)) ? this.current.genre : null;
+  }
+  set genre(s) {
+    if ((this.current !== undefined) && (this !== null)) {
+      this.current.genre = s;
     }
-    set genre(s){
-      if ((this.current !== undefined) && (this !== null)){
-        this.current.genre = s;
+  }
+  get mat_module() {
+    return ((this.current !== undefined) && (this !== null)) ? this.current.module : null;
+  }
+  set mat_module(s) {
+    if ((this.current !== undefined) && (this !== null)) {
+      this.current.module = s;
+    }
+  }
+  get coefficient() {
+    return ((this._coef !== undefined) && (this._coef !== null)) ? this._coef : null;
+  }
+  set coefficient(v) {
+    if ((v !== undefined) && (v !== null)) {
+      try {
+        let x = parseFloat(v);
+        if ((!isNaN(x)) && (x > 0)) {
+          this._coef = x;
+        }
       }
+      catch (e) {}
     }
-    get mat_module(){
-      return ((this.current !== undefined) && (this !== null)) ? this.current.module : null;
-    }
-    set mat_module(s){
-      if ((this.current !== undefined) && (this !== null)){
-        this.current.module = s;
+  }
+  get ecs() {
+    return ((this._ecs !== undefined) && (this._ecs !== null)) ? this._ecs : null;
+  }
+  set ecs(v) {
+    if ((v !== undefined) && (v !== null)) {
+      try {
+        let x = parseFloat(v);
+        if ((!isNaN(x)) && (x > 0)) {
+          this._ecs = x;
+        }
       }
+      catch (e) {}
     }
-    get coefficient(){
-      return ((this._coef !== undefined) && (this._coef !== null)) ? this._coef: null;
-    }
-    set coefficient(v){
-      if ((v !== undefined) && (v !== null)){
-        try {
-          let x = parseFloat(v);
-          if ((!isNaN(x)) && (x > 0)){
-            this._coef = x;
-          }
-        }catch(e){}
-      }
-    }
-    get ecs(){
-      return ((this._ecs !== undefined) && (this._ecs !== null)) ? this._ecs: null;
-    }
-    set ecs(v){
-      if ((v !== undefined) && (v !== null)){
-        try {
-          let x = parseFloat(v);
-          if ((!isNaN(x)) && (x > 0)){
-            this._ecs = x;
-          }
-        }catch(e){}
-      }
-    }
+  }
   get uniteid() {
     return ((this.unite !== undefined) && (this.unite !== null)) ?
       this.unite.id : null;
@@ -95,14 +94,9 @@ export class Matieres extends PagedSigleNameViewModel {
     super.current = v;
     this._coef = null;
     this._ecs = null;
-    if ((v !== undefined) && (v !== null)){
+    if ((v !== undefined) && (v !== null)) {
       this.coefficient = v.coefficient;
       this.ecs = v.ecs;
-    }
-    if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
-      this.userInfo.matiere = v;
-      this.userInfo.profaffectation = null;
-      this.userInfo.groupeevent = null;
     }
   }
   get canAdd() {
@@ -118,7 +112,7 @@ export class Matieres extends PagedSigleNameViewModel {
   }
   save() {
       if ((this.current == null) || (this.current.sigle === undefined) ||
-       (this.current.sigle === null) ||
+        (this.current.sigle === null) ||
         (this.departementid == null) || (this.uniteid == null)) {
         return;
       }
@@ -145,18 +139,21 @@ export class Matieres extends PagedSigleNameViewModel {
       });
       var self = this;
       var service = this.dataService;
-      return service.find_unite_by_id(id).then((d) => {
+      return service.find_item_by_id(this.unite).then((d) => {
         if ((d !== undefined) && (d !== null)) {
           self.unite = d;
           if (d != null) {
             self.title = 'Matières ' + d.name;
-            service.find_departement_by_id(d.departementid)
+            self.departement = new Departement({
+              _id: d.departementid
+            });
+            service.find_item_by_id(self.departement)
               .then((x) => {
                 self.departement = x;
+                return self.refreshAll();
               })
           }
         }
-        return self.refreshAll();
       });
     } // activate
 } // class Matieres

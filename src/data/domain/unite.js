@@ -1,12 +1,17 @@
 // unite.js
-import {DepartementChildItem} from './departementchild';
+import {
+    DepartementChildItem
+}
+from './departementchild';
 //
 export class Unite extends DepartementChildItem {
-    constructor(oMap){
+    constructor(oMap) {
         super(oMap);
-        this.type = 'unite';
     }
-    get collection_name(){
+    get type() {
+        return 'unite';
+    }
+    get collection_name() {
         return 'unites';
     }
-}// class DepartementChildItem
+} // class DepartementChildItem

@@ -16,17 +16,13 @@ import {
   PagedSigleNameViewModel
 }
 from './data/viewmodel/pagedsiglenameviewmodel';
-import {
-  UserInfo
-}
-from './userinfo';
-//
+
 export class Unites extends PagedSigleNameViewModel {
   static inject() {
-    return [DataService, UserInfo];
+    return [DataService];
   }
-  constructor(dataService, userInfo) {
-      super(dataService, userInfo, new Unite());
+  constructor(dataService) {
+      super(dataService, new Unite());
       this.title = 'Unités';
       this.menu = [];
     } // constructor
@@ -44,11 +40,6 @@ export class Unites extends PagedSigleNameViewModel {
       });
     }
     this.menu = mm;
-    if ((this.userInfo !== undefined) && (this.UserInfo !== null)) {
-      this.userInfo.groupe = v;
-      this.userInfo.profaffectation = null;
-      this.userInfo.groupeevent = null;
-    }
   }
   get canAdd() {
     return (super.canAdd && (this.departementid != null));
@@ -67,10 +58,8 @@ export class Unites extends PagedSigleNameViewModel {
       this.departement = new Departement({
         _id: id
       });
-      //this.refreshAll();
-      //return true;
       var self = this;
-      return this.dataService.find_departement_by_id(id).then((d) => {
+      return this.dataService.find_item_by_id(this.departement).then((d) => {
         if ((d !== undefined) && (d !== null)) {
           self.departemnt = d;
           if (d != null) {

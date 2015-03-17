@@ -5,8 +5,8 @@ import {
 from './pagedviewmodel';
 //
 export class PagedSigleNameViewModel extends PagedViewModel {
-  constructor(dataService, userInfo, model) {
-      super(dataService, userInfo, model);
+  constructor(dataService, model) {
+      super(dataService, model);
     } // constructor
   get sigle() {
     return ((this.current !== undefined) && (this.current !== null) &&

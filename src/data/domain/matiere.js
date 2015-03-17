@@ -1,11 +1,13 @@
 // matiere.js
-import { DepartementChildItem } from './departementchild';
+import {
+    DepartementChildItem
+}
+from './departementchild';
 //
 export class Matiere extends DepartementChildItem {
     //
     constructor(oMap) {
             super(oMap);
-        this.type = 'matiere';
             if ((oMap !== undefined) && (oMap !== null)) {
                 if (oMap.uniteid !== undefined) {
                     this.uniteid = oMap.uniteid;
@@ -24,6 +26,9 @@ export class Matiere extends DepartementChildItem {
                 }
             }
         } // constructor
+    get type() {
+        return 'matiere';
+    }
     get collection_name() {
             return "matieres";
         }
@@ -52,8 +57,8 @@ export class Matiere extends DepartementChildItem {
         return (this._module !== undefined) ? this._module : null;
     }
     set module(s) {
-        this._module = ((s !== undefined) && 
-        (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
+        this._module = ((s !== undefined) &&
+            (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
     }
     get has_module() {
             return (this.module !== null);
@@ -64,7 +69,7 @@ export class Matiere extends DepartementChildItem {
     }
     set genre(s) {
         this._genre = ((s !== undefined) &&
-        (s !== null) && (s.trim().length > 0)) ? s.trim().toLowerCase() : null;
+            (s !== null) && (s.trim().length > 0)) ? s.trim().toLowerCase() : null;
     }
     get has_genre() {
             return (this.genre !== null);
@@ -75,7 +80,7 @@ export class Matiere extends DepartementChildItem {
     }
     set uniteid(s) {
         this._uniteid = ((s !== undefined) &&
-        (s !== null) && (s.trim().length > 0)) ? s.trim() : null;
+            (s !== null) && (s.toString().trim().length > 0)) ? s : null;
     }
     get has_uniteid() {
         return (this.uniteid !== null);
