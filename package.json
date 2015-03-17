@@ -56,7 +56,8 @@
       "aurelia-router": "github:aurelia/router@^0.5.8",
       "blueimp-md5": "npm:blueimp-md5@^1.1.0",
       "bootstrap": "github:twbs/bootstrap@^3.3.1",
-      "font-awesome": "npm:font-awesome@^4.3.0"
+      "font-awesome": "npm:font-awesome@^4.3.0",
+      "moment": "github:moment/moment@^2.9.0"
     }
   }
 }

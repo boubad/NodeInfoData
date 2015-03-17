@@ -32,3 +32,6 @@ bower_components
 .DS_STORE
 dist
 .c9
+.zedstate
+
+/.zedstate

@@ -17,9 +17,9 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.persons.ensureIndex({
         email: 1
     });
-    db.persons.insert({username:'admin',
+    db.persons.insert({type:'person',username:'admin',
             password:'eb2b7a4cdb39d84c45261dac74bc8116',lastname:'SYSTSEM',   firstname:'Administrator',
-            roles:['super','admin','oper','prof','etud','reader'],type:'administrator'});
+            roles:['super','admin','oper','prof','etud','reader']});
     print("persons indexes OK...");
 //
     db.personinfos.ensureIndex({personid:1},{unique:true});
@@ -199,7 +199,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.matieres.ensureIndex({
         genre: 1
     });
-   
+
     print("matieres indexes OK...");
     //
     db.profaffectations.ensureIndex({
@@ -226,7 +226,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.profaffectations.ensureIndex({
         startdate: -1
     });
-    
+
     print("profaffectations indexes OK...");
     //
     db.etudaffectations.ensureIndex({
@@ -250,7 +250,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.etudaffectations.ensureIndex({
         stardate: -1
     });
-   
+
     print("affectations indexes OK...");
     //
     db.groupeevents.ensureIndex({
@@ -277,7 +277,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.groupeevents.ensureIndex({
         departementid: -1
     });
-   
+
     print("groupeevents indexes OK...");
     //
     db.etudiantevents.ensureIndex({
@@ -307,7 +307,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.etudiantevents.ensureIndex({
         genre: 1
     });
-   
+
     print("etudiantevents indexes OK...");
     //
     db.attacheddocs.ensureIndex({
@@ -316,7 +316,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     db.attacheddocs.ensureIndex({
         name: 1
     });
-    
+
     print("attacheddocs indexes OK...");
     //
     db.datasets.ensureIndex({sigle: 1},{unique:true});
@@ -337,7 +337,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     }, {
         unique: true,
         dropDups: true
-    });    
+    });
 
     db.indivs.ensureIndex({
         attributes: 1
@@ -356,7 +356,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     }, {
         unique: true,
         dropDups: true
-    });  
+    });
     db.variables.ensureIndex({
         attributes: 1
     });
@@ -377,7 +377,7 @@ db.departements.ensureIndex({sigle:1},{unique:true});
     }, {
         unique: true,
         dropDups: true
-    });  
+    });
     db.valeurs.ensureIndex({
         attributes: 1
     });

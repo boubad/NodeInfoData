@@ -18,6 +18,7 @@ System.config({
     "blueimp-md5": "npm:blueimp-md5@1.1.0",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "font-awesome": "npm:font-awesome@4.3.0",
+    "moment": "github:moment/moment@2.9.0",
     "github:aurelia/binding@0.3.7": {
       "aurelia-dependency-injection": "github:aurelia/dependency-injection@0.4.5",
       "aurelia-metadata": "github:aurelia/metadata@0.3.3",
