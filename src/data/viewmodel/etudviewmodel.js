@@ -18,7 +18,7 @@ import {
 from 'moment';
 //
 export class EtudViewModel extends PersonViewModel {
-    constructor(dataService, model, personModel) {
+    constructor(dataService) {
             super(dataService, new Etudiant(), new EtudPerson());
             this._format = 'YYYY-MM-DD';
         } // constructor

@@ -24,16 +24,17 @@ export class App {
         moduleId: 'flickr',
         nav: true
       }, {
-        route: 'etuds/:id',
-        moduleId: 'welcome',
-        nav: false
-      }, {
         route: 'profs/:id',
         moduleId: 'enseignants',
         nav: false
-      }, {
+      }, 
+      {
+        route: 'opers/:id',
+        moduleId: 'operators',
+        nav: false
+      },{
         route: 'etuds/:id',
-        moduleId: 'welcome',
+        moduleId: 'etudiants',
         nav: false
       }, {
         route: 'unites/:id',

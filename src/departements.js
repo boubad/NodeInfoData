@@ -52,6 +52,10 @@ export class Departements extends PagedSigleNameViewModel {
       title: 'Unités',
       refer: '#unites/' + id
     });
+    mm.push({
+      title: 'Opérateurs',
+      refer: '#opers/' + id
+    });
     }
     this.menu = mm;
   }
